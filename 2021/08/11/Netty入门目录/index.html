@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Hexo</title>
+  <meta name="description" content="前言用一个月的时间完成了Netty框架入门文章，文章总共8篇；这次的入门使用一个使用Netty框架完成的一个包含服务端与客户端通信功能的小例子。再围绕这个例子介绍Netty的Bytebuf、ChannelHandler、ChannelPipeline、Bootstrap等组件的使用及相关原理，并没有细讲实现的原理有些可能会过一下，文章中大多会使用服务端与客户端的例子重复的进行说明、拆解等。通过这一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2021/08/11/Netty%E5%85%A5%E9%97%A8%E7%9B%AE%E5%BD%95/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="前言用一个月的时间完成了Netty框架入门文章，文章总共8篇；这次的入门使用一个使用Netty框架完成的一个包含服务端与客户端通信功能的小例子。再围绕这个例子介绍Netty的Bytebuf、ChannelHandler、ChannelPipeline、Bootstrap等组件的使用及相关原理，并没有细讲实现的原理有些可能会过一下，文章中大多会使用服务端与客户端的例子重复的进行说明、拆解等。通过这一">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-08-11T07:51:32.229Z">
+<meta property="article:modified_time" content="2021-08-11T07:51:32.229Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://example.com/2021/08/11/Netty%E5%85%A5%E9%97%A8%E7%9B%AE%E5%BD%95/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">昵称</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shenzhen, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">Books</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">Links</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+
+    
+      
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">August 2021</a><span class="archive-list-count">9</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8%E7%9B%AE%E5%BD%95/" class="title">(no title)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-08-11T07:51:32.229Z" itemprop="datePublished">2021-08-11</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-%E7%A4%BA%E4%BE%8B/" class="title">(no title)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-08-11T07:51:32.216Z" itemprop="datePublished">2021-08-11</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9Netty/" class="title">(no title)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-08-11T07:51:32.201Z" itemprop="datePublished">2021-08-11</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-EventLoop%E4%B8%8E%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/" class="title">(no title)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-08-11T07:51:32.185Z" itemprop="datePublished">2021-08-11</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-ChannelPipeline/" class="title">(no title)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-08-11T07:51:32.170Z" itemprop="datePublished">2021-08-11</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Netty入门目录" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8%E7%9B%AE%E5%BD%95/" class="article-date">
+	  <time datetime="2021-08-11T07:51:32.229Z" itemprop="datePublished">2021-08-11</time>
+	</a>
+</span>
+        
+        
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8%E7%9B%AE%E5%BD%95/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>用一个月的时间完成了Netty框架入门文章，文章总共8篇；这次的入门使用一个使用Netty框架完成的一个包含服务端与客户端通信功能的小例子。再围绕这个例子介绍Netty的Bytebuf、ChannelHandler、ChannelPipeline、Bootstrap等组件的使用及相关原理，并没有细讲实现的原理有些可能会过一下，文章中大多会使用服务端与客户端的例子重复的进行说明、拆解等。通过这一系列文章你可以掌握这些知识与技能：</p>
+<ol>
+<li>如何使用Netty框架</li>
+<li>Netty框架有那些主要组件</li>
+<li>Bytebuf中常常说的零拷贝是什么原理</li>
+<li>NIO有那些实现方式</li>
+<li>ChannelHandler、ChannelPipeline的作用</li>
+<li>如果引导与优雅的停止使用Netty框架开发的网络应用程序</li>
+</ol>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>所有文章地址：<br><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzkyMzIzNjIxMg==&action=getalbum&album_id=1943631392462995458#wechat_redirect">Netty入门系列 全8篇</a></p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzkyMzIzNjIxMg==&mid=2247484148&idx=1&sn=6f0d8da165afcc7e43fb77b7f5599e06&chksm=c1e960eff69ee9f95bb3f76f98c0caf29c4c6db2bdb537b91347d20fbceb9755aec029c90ee6&scene=178&cur_album_id=1943631392462995458#rd">[1]网络I/O : Netty 体系结构概述</a><br><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzkyMzIzNjIxMg==&mid=2247484156&idx=1&sn=7ca350ecc9fc895a331d2ac5e7c3647c&chksm=c1e960e7f69ee9f1a9081ea44450fc4e136af837f611155a479874242a33ecb32cfdf5e5d00d&scene=178&cur_album_id=1943631392462995458#rd">[2]Netty框架：用Service与Client示例入门</a><br><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzkyMzIzNjIxMg==&mid=2247484164&idx=1&sn=bca7822a17462d45bcc66b9e7e06366f&chksm=c1e9611ff69ee809fc93e2823339c2383e8b9b7a87c88b4d67583237f595c04826bd2a810ab0&scene=178&cur_album_id=1943631392462995458#rd">[3]Netty框架：选择Netty的理由</a><br><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzkyMzIzNjIxMg==&mid=2247484173&idx=1&sn=f08e2e0fe3222e347e65fe55fa847653&chksm=c1e96116f69ee800b6956f855697d97fe0a15ac0b99d75f09ed165ce519a278671242566d02e&scene=178&cur_album_id=1943631392462995458#rd">[4]Netty框架：ByteBuf 堆缓冲区与直接缓冲区使用讲解</a><br><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzkyMzIzNjIxMg==&mid=2247484182&idx=1&sn=a6bb16eba79c06155f7e53829bbf5ee7&chksm=c1e9610df69ee81be279d9407057da492cfc871bdba663071d302fd05b203ea5155e94a5746a&scene=178&cur_album_id=1943631392462995458#rd">[5]Netty框架：ChannelInboundHandler与ChannelOutbountHandler使用讲解</a><br><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzkyMzIzNjIxMg==&mid=2247484194&idx=1&sn=99a8f9977bbc76975f85e7e6ff707cf8&chksm=c1e96139f69ee82fb644366be99ace587fdef1b9638685ae602cd7683846ab260875a388eb8b&scene=178&cur_album_id=1943631392462995458#rd">[6]Netty框架：ChannelPipeline事件传播的艺术</a><br><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzkyMzIzNjIxMg==&mid=2247484204&idx=1&sn=281bcc5485bdcbf3107f2a10c4ffe8e2&chksm=c1e96137f69ee8219d791f4f404582cf6117eb4078b9985e7d68fa0833ae6d4e70ba0ab66ef9&scene=178&cur_album_id=1943631392462995458#rd">[7]Netty入门：EventLoop与线程模型</a><br><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzkyMzIzNjIxMg==&mid=2247484214&idx=1&sn=cddeddee30c1f9f57d73be1ec473211e&chksm=c1e9612df69ee83ba9832a61ea246939cf10bda5d3671e11a0afcdc141ee6cef31bd25ef8fa2&scene=178&cur_album_id=1943631392462995458#rd">[8]Netty框架：Bootstrap 引导</a></p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://example.com/2021/08/11/Netty%E5%85%A5%E9%97%A8%E7%9B%AE%E5%BD%95/" title="" target="_blank" rel="external">http://example.com/2021/08/11/Netty入门目录/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">昵称</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-%E7%A4%BA%E4%BE%8B/" title="(no title)"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>

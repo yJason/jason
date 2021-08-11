@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Hexo</title>
+  <meta name="description" content="前言网络编程无处不在，Java JDK内置提供了OIO(BIO)、NIO的支持；没有看过Java BIO浅析、Java NIO浅析的小伙伴可以去看下BIO&#x2F;NIO的小示例。但说到Java 网络编程少不了Netty；自它问世起就一直火到现在，像阿里的Dubbo框架、Jetty等都使用了Netty框架做为网络通信框架。上篇Netty框架:用Service与Client示例入门中通过实现一个服务端与客户">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2021/08/11/Netty%E5%85%A5%E9%97%A8-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9Netty/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="前言网络编程无处不在，Java JDK内置提供了OIO(BIO)、NIO的支持；没有看过Java BIO浅析、Java NIO浅析的小伙伴可以去看下BIO&#x2F;NIO的小示例。但说到Java 网络编程少不了Netty；自它问世起就一直火到现在，像阿里的Dubbo框架、Jetty等都使用了Netty框架做为网络通信框架。上篇Netty框架:用Service与Client示例入门中通过实现一个服务端与客户">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://img.jasony.top:980/file/1626227814592.png">
+<meta property="article:published_time" content="2021-08-11T07:51:32.201Z">
+<meta property="article:modified_time" content="2021-08-11T07:51:32.202Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://img.jasony.top:980/file/1626227814592.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://example.com/2021/08/11/Netty%E5%85%A5%E9%97%A8-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9Netty/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">昵称</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shenzhen, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">Books</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">Links</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+
+    
+      
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">August 2021</a><span class="archive-list-count">9</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8%E7%9B%AE%E5%BD%95/" class="title">(no title)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-08-11T07:51:32.229Z" itemprop="datePublished">2021-08-11</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-%E7%A4%BA%E4%BE%8B/" class="title">(no title)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-08-11T07:51:32.216Z" itemprop="datePublished">2021-08-11</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9Netty/" class="title">(no title)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-08-11T07:51:32.201Z" itemprop="datePublished">2021-08-11</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-EventLoop%E4%B8%8E%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/" class="title">(no title)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-08-11T07:51:32.185Z" itemprop="datePublished">2021-08-11</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-ChannelPipeline/" class="title">(no title)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-08-11T07:51:32.170Z" itemprop="datePublished">2021-08-11</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Netty入门-为什么选择Netty" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9Netty/" class="article-date">
+	  <time datetime="2021-08-11T07:51:32.201Z" itemprop="datePublished">2021-08-11</time>
+	</a>
+</span>
+        
+        
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9Netty/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>网络编程无处不在，Java JDK内置提供了OIO(BIO)、NIO的支持；没有看过<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzkyMzIzNjIxMg==&mid=2247484130&idx=1&sn=e633a1bbcfa3e595e6384105ca0672d9&chksm=c1e960f9f69ee9ef16657d5442f3286267d5ce7d2b81a4c01290e1e0ed0528a1bd34f58fd9b8&token=2046374432&lang=zh_CN#rd">Java BIO浅析</a>、<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzkyMzIzNjIxMg==&mid=2247484140&idx=1&sn=9e2507b8f776d475c2268dbf46764c89&chksm=c1e960f7f69ee9e1ce49fd069b97f73da82f451f37ccb9a7206c3f5d7597d63a62dea80ab300&token=2046374432&lang=zh_CN#rd">Java NIO浅析</a>的小伙伴可以去看下BIO/NIO的小示例。但说到Java 网络编程少不了<strong>Netty</strong>；自它问世起就一直火到现在，像阿里的Dubbo框架、Jetty等都使用了Netty框架做为网络通信框架。<br>上篇<a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzkyMzIzNjIxMg==&mid=2247484156&idx=1&sn=7ca350ecc9fc895a331d2ac5e7c3647c&chksm=c1e960e7f69ee9f1a9081ea44450fc4e136af837f611155a479874242a33ecb32cfdf5e5d00d&token=2046374432&lang=zh_CN#rd">Netty框架:用Service与Client示例入门</a>中通过实现一个服务端与客户端互发消息功能的示例讲解了Netty框架NIO模型的网络编程方法，通过这样一个小示例了解决了Netty的使用方法。</p>
+<p>到此你是否有疑问，为什么要用Netty框架编写网络通信层呢？Netty对比Java JDK提供的网络通信API有哪些不同？</p>
+<p>在继续阅读下文前如果对Java JDK编写网络通信层不清楚的同学可以去看下用Java JDK 写的BIO与NIO通信的示例：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzkyMzIzNjIxMg==&mid=2247484130&idx=1&sn=e633a1bbcfa3e595e6384105ca0672d9&chksm=c1e960f9f69ee9ef16657d5442f3286267d5ce7d2b81a4c01290e1e0ed0528a1bd34f58fd9b8&token=2046374432&lang=zh_CN#rd">Java BIO浅析</a>、<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzkyMzIzNjIxMg==&mid=2247484140&idx=1&sn=9e2507b8f776d475c2268dbf46764c89&chksm=c1e960f7f69ee9e1ce49fd069b97f73da82f451f37ccb9a7206c3f5d7597d63a62dea80ab300&token=2046374432&lang=zh_CN#rd">Java NIO浅析</a></p>
+<h2 id="统一的API接口"><a href="#统一的API接口" class="headerlink" title="统一的API接口"></a>统一的API接口</h2><p>Netty框架的作用是实现网络通信，它提供了一套能用的网络通信API接口，这一套网络接口中包含了EventLoop、Channel、Buffer、Future等，通过这些接口可以统一规范的实现OIO、NIO、Epoll的网络缓和模型，在模型与模型之间迁移时提供了便利。Netty框架工作的网络模型中的传输层。<br><img src="http://img.jasony.top:980/file/1626227814592.png" alt="image-20210713170135447"></p>
+<p>Netty默认支持的网络传输协议有TCP、UDP、SCTP、UDT。</p>
+<table>
+<thead>
+<tr>
+<th align="center">传 输 方 式</th>
+<th align="center">TCP</th>
+<th align="center">UDP</th>
+<th align="center">SCTP</th>
+<th align="center">UDT</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">NIO</td>
+<td align="center">✔️</td>
+<td align="center">✔️</td>
+<td align="center">✔️</td>
+<td align="center">✔️</td>
+</tr>
+<tr>
+<td align="center">Epoll(linux)</td>
+<td align="center">✔️</td>
+<td align="center">✔️</td>
+<td align="center">❌</td>
+<td align="center">❌</td>
+</tr>
+<tr>
+<td align="center">OIO/BIO</td>
+<td align="center">✔️</td>
+<td align="center">✔️</td>
+<td align="center">✔️</td>
+<td align="center">✔️</td>
+</tr>
+</tbody></table>
+<p>对于以上传输方式在Netty中分别使用如下类实现：</p>
+<ul>
+<li>NIO: NioSocketChannel 实现channel功能，NioEventLoop实现EventLoop功能，NioEventLoopGroup实现EventLoopGroup功能</li>
+<li>OIO:OioSocketChannel 实现channel功能，OioEventLoop实现EventLoop功能，OioEventLoopGroup实现EventLoopGroup功能</li>
+<li>Epoll:EpollSocketChannel 实现channel功能，EpollEventLoop实现EventLoop功能，EpollEventLoopGroup实现EventLoopGroup功能</li>
+</ul>
+<p>另外Netty还实现了Jvm内的通信，使用LocalSocketChannel、LocalEventLoop、LocalEventLoopGroup进行实现，另外还是embedded的方法用于测试ChannelHandler，Local与embedded的方式就不多讲了。</p>
+<p>在Netty框架中NIO与OIO的底层实现还是使用Java jdk提供的API；Netty对这些Api进行了封装，具体后面再进行详细的分析。对于Epoll只在linux系统中有效，Netty官方也建议在Linux系统中使用Epoll的方式。</p>
+<p>使用Netty框架时在NIO/OIO/Epoll模型上可以很轻松的进行迁移，使用NIO的实现可以看<a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzkyMzIzNjIxMg==&mid=2247484156&idx=1&sn=7ca350ecc9fc895a331d2ac5e7c3647c&chksm=c1e960e7f69ee9f1a9081ea44450fc4e136af837f611155a479874242a33ecb32cfdf5e5d00d&token=2046374432&lang=zh_CN#rd">Netty框架：用Service与Client示例入门</a>；现在打算将应用部署到linux环境中并改用epoll进行实现，那我们只需要将EventLoop与Channel修改成Epoll对应的类就可以了，修改后的结果如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] arg)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">  <span class="comment">//将EventLoopGroup的类型由原来的NioEventLoopGroup修改为EpollEventLoopGroup</span></span><br><span class="line">  EpollEventLoopGroup group=<span class="keyword">new</span> EpollEventLoopGroup()</span><br><span class="line">  Bootstrap bootstrap = <span class="keyword">new</span> Bootstrap();</span><br><span class="line">  <span class="comment">//将SocketChannel类型由原来的NioSocketChannel修改为EpollSocketChannel</span></span><br><span class="line">  bootstrap.channel(EpollSocketChannel.class);</span><br><span class="line">  bootstrap.group(group)</span><br><span class="line">  bootstrap.option(ChannelOption.SO_KEEPALIVE,<span class="keyword">true</span>);</span><br><span class="line">  bootstrap.remoteAddress(<span class="string">&quot;127.0.0.1&quot;</span>, <span class="number">30888</span>);</span><br><span class="line">  <span class="keyword">final</span> MessageChannel channel = <span class="keyword">new</span> MessageChannel();</span><br><span class="line">  bootstrap.handler(<span class="keyword">new</span> ChannelInitializer&lt;SocketChannel&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">initChannel</span><span class="params">(SocketChannel ch)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">      ch.pipeline().addLast(channel);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  ChannelFuture channelFuture = bootstrap.connect().sync();</span><br><span class="line">  channelFuture.channel().closeFuture().sync();</span><br><span class="line">  group.shutdownGracefully();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>示例为客户端的代码，只需要简单的修改EventLoopGroup与SocketChannel的类型为Epoll对应的类型就可以完成切换，同样的修改成Oio也只需要修改这些点就可以了，这是Netty框架为统一Api后带来的好处。</p>
+<h2 id="零拷贝"><a href="#零拷贝" class="headerlink" title="零拷贝"></a>零拷贝</h2><p>Netty框架还有一个被神化的操作<strong>零拷贝</strong>；在网络编程中常常需要对传输的数据进行拷贝，例如从内核内存区拷贝到用户内存区(也就是数据的内核态转化为用户态)；但Netty的零拷贝并不是减少了数据从内核态到用户态的转换，而是在Jvm中对于用户态缓存的数据操作进行优化，体现在5个方面：</p>
+<ul>
+<li>Netty接收与发送的数据使用直接内存进行Socket读写，减少在缓存区的二次拷贝。</li>
+<li>文件传输使用FileRegion包装的transferTo方法直接将文件缓冲区的数据发送到目标Channel，避免循环文件缓冲区导致的内存拷贝</li>
+<li>提供CompositeByteBuf类，可以将多个ByteBuf逻辑上合并成一个ByteBuf，避免了需要合并数据时导致的拷贝</li>
+<li>通过wrap操作对byte[]、ByteBuf、ByteBuffer等类型包装成Netty的ByteBuf对象避免内存的拷贝</li>
+<li>Netty的ByteBuf支持slice操作，通过slice可以将一个ByteBuf分解为多个共享同一存储区域的ByteBuf避免需要操作部分数据时的拷贝</li>
+</ul>
+<p>上面这些优化都只是对在用户态的数据进行操作上的优化避免用户态数据操作间的拷贝，对于内核态到用户态的转换还是需要对数据进行拷贝。</p>
+<h2 id="选择Netty的理由"><a href="#选择Netty的理由" class="headerlink" title="选择Netty的理由"></a>选择Netty的理由</h2><p>如果统一的API接口与零拷贝这两个最大的优点都无法吸引你选择Netty框架学习Netty框架的话，我相信加上这些会让你觉得在项目中应用Netty框架是一个不错的选择：</p>
+<ul>
+<li>Netty框架封装了网络编程的复杂性，解决了网络编程中常常需要处理且难已处理的网络问题，例如网络闪断、客户端重复接入、安全认证、消息编解码、半包读等问题</li>
+<li>JDK NIO的Bug，例如臭名昭著的epoll bug，它会使Selector空轮询导致CPU 100%，虽然官方称在1.6版本的update18修复了该问题，但在1.7版本中仍旧存在，只是发生的概率降低了。</li>
+<li>使用JDK的NIO API 需要团队过多的关注网络编程本身，团队中需要有足够的网络编程经验且对Selector、ServiceSocketChannel、SocketChannel、ByteBuffer足够熟悉的人才能编写与高质量的NIO程序。</li>
+<li>对团队编码水平整体要求高，需要有额外的知识储备，例如多线程编程</li>
+</ul>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://example.com/2021/08/11/Netty%E5%85%A5%E9%97%A8-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9Netty/" title="" target="_blank" rel="external">http://example.com/2021/08/11/Netty入门-为什么选择Netty/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">昵称</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-%E7%A4%BA%E4%BE%8B/" title="(no title)"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-EventLoop%E4%B8%8E%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/" title="(no title)"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>
