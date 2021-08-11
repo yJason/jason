@@ -1,872 +1,592 @@
 <!DOCTYPE html>
-<html>
+<html lang=zh>
 <head>
   <meta charset="utf-8">
   
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
   
   <title>Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:locale" content="en_US">
-<meta property="article:author" content="John Doe">
+  <meta name="description" content="码农杰森的个人博客，内容包含:Java语言 Java JDK 源码分析等文章内容">
+<meta property="og:type" content="website">
+<meta property="og:title" content="码农杰森-个人博客">
+<meta property="og:url" content="http://yjason.github.io/index.html">
+<meta property="og:site_name" content="码农杰森-个人博客">
+<meta property="og:description" content="码农杰森的个人博客，内容包含:Java语言 Java JDK 源码分析等文章内容">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Jason">
 <meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://yjason.github.io/index.html">
   
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="码农杰森-个人博客" type="application/atom+xml">
   
   
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-    
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
-
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
   
   
 <link rel="stylesheet" href="/css/style.css">
 
   
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
-
+  
+  
   
 <meta name="generator" content="Hexo 5.4.0"></head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
       
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">昵称</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shenzhen, China</small>
       </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
     </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">Books</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">Links</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
   </div>
 </header>
 
-      <div class="outer">
-        <section id="main">
   
-    <article id="post-Netty入门目录" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8%E7%9B%AE%E5%BD%95/" class="article-date">
-  <time class="dt-published" datetime="2021-08-11T07:51:32.229Z" itemprop="datePublished">2021-08-11</time>
-</a>
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
     
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>用一个月的时间完成了Netty框架入门文章，文章总共8篇；这次的入门使用一个使用Netty框架完成的一个包含服务端与客户端通信功能的小例子。再围绕这个例子介绍Netty的Bytebuf、ChannelHandler、ChannelPipeline、Bootstrap等组件的使用及相关原理，并没有细讲实现的原理有些可能会过一下，文章中大多会使用服务端与客户端的例子重复的进行说明、拆解等。通过这一系列文章你可以掌握这些知识与技能：</p>
-<ol>
-<li>如何使用Netty框架</li>
-<li>Netty框架有那些主要组件</li>
-<li>Bytebuf中常常说的零拷贝是什么原理</li>
-<li>NIO有那些实现方式</li>
-<li>ChannelHandler、ChannelPipeline的作用</li>
-<li>如果引导与优雅的停止使用Netty框架开发的网络应用程序</li>
-</ol>
-<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>所有文章地址：<br><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzkyMzIzNjIxMg==&action=getalbum&album_id=1943631392462995458#wechat_redirect">Netty入门系列 全8篇</a></p>
-<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzkyMzIzNjIxMg==&mid=2247484148&idx=1&sn=6f0d8da165afcc7e43fb77b7f5599e06&chksm=c1e960eff69ee9f95bb3f76f98c0caf29c4c6db2bdb537b91347d20fbceb9755aec029c90ee6&scene=178&cur_album_id=1943631392462995458#rd">[1]网络I/O : Netty 体系结构概述</a><br><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzkyMzIzNjIxMg==&mid=2247484156&idx=1&sn=7ca350ecc9fc895a331d2ac5e7c3647c&chksm=c1e960e7f69ee9f1a9081ea44450fc4e136af837f611155a479874242a33ecb32cfdf5e5d00d&scene=178&cur_album_id=1943631392462995458#rd">[2]Netty框架：用Service与Client示例入门</a><br><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzkyMzIzNjIxMg==&mid=2247484164&idx=1&sn=bca7822a17462d45bcc66b9e7e06366f&chksm=c1e9611ff69ee809fc93e2823339c2383e8b9b7a87c88b4d67583237f595c04826bd2a810ab0&scene=178&cur_album_id=1943631392462995458#rd">[3]Netty框架：选择Netty的理由</a><br><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzkyMzIzNjIxMg==&mid=2247484173&idx=1&sn=f08e2e0fe3222e347e65fe55fa847653&chksm=c1e96116f69ee800b6956f855697d97fe0a15ac0b99d75f09ed165ce519a278671242566d02e&scene=178&cur_album_id=1943631392462995458#rd">[4]Netty框架：ByteBuf 堆缓冲区与直接缓冲区使用讲解</a><br><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzkyMzIzNjIxMg==&mid=2247484182&idx=1&sn=a6bb16eba79c06155f7e53829bbf5ee7&chksm=c1e9610df69ee81be279d9407057da492cfc871bdba663071d302fd05b203ea5155e94a5746a&scene=178&cur_album_id=1943631392462995458#rd">[5]Netty框架：ChannelInboundHandler与ChannelOutbountHandler使用讲解</a><br><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzkyMzIzNjIxMg==&mid=2247484194&idx=1&sn=99a8f9977bbc76975f85e7e6ff707cf8&chksm=c1e96139f69ee82fb644366be99ace587fdef1b9638685ae602cd7683846ab260875a388eb8b&scene=178&cur_album_id=1943631392462995458#rd">[6]Netty框架：ChannelPipeline事件传播的艺术</a><br><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzkyMzIzNjIxMg==&mid=2247484204&idx=1&sn=281bcc5485bdcbf3107f2a10c4ffe8e2&chksm=c1e96137f69ee8219d791f4f404582cf6117eb4078b9985e7d68fa0833ae6d4e70ba0ab66ef9&scene=178&cur_album_id=1943631392462995458#rd">[7]Netty入门：EventLoop与线程模型</a><br><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzkyMzIzNjIxMg==&mid=2247484214&idx=1&sn=cddeddee30c1f9f57d73be1ec473211e&chksm=c1e9612df69ee83ba9832a61ea246939cf10bda5d3671e11a0afcdc141ee6cef31bd25ef8fa2&scene=178&cur_album_id=1943631392462995458#rd">[8]Netty框架：Bootstrap 引导</a></p>
-
-      
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
     </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/08/11/Netty%E5%85%A5%E9%97%A8%E7%9B%AE%E5%BD%95/" data-id="cks78swmh000736ub00ptd6cy" data-title="" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
+</div>
 
-
-
-  
-    <article id="post-Netty入门-示例" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-%E7%A4%BA%E4%BE%8B/" class="article-date">
-  <time class="dt-published" datetime="2021-08-11T07:51:32.216Z" itemprop="datePublished">2021-08-11</time>
-</a>
     
-  </div>
-  <div class="article-inner">
+      
+
     
+      
+
     
-    <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>知识点：</p>
-<blockquote>
-<ol>
-<li>Netty框架如何引导服务端监听网络端口并读写消息</li>
-<li>Netty框架如何连接远程服务器并读写消息</li>
-<li>Netty框架ChannelInboundHandlerAdapter部分事件使用方法</li>
-<li>Netty框架Channel管道使用方法</li>
-</ol>
-</blockquote>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上一篇对Netty框架做了一个大概的介绍，并对核心部件Channel、ChannelHeadler、Future、事件从概念与作用上做了说明，另外还与Java NIO 在编码上做了一个简单的对比，引出了EventLoop。本篇使用一个小示例来了解下Netty框架怎么使用，真正的用起来。</p>
-<h2 id="交互图"><a href="#交互图" class="headerlink" title="交互图"></a>交互图</h2><p><img src="http://img.jasony.top:980/file/1625607964655.png" alt="image-20210707054544322"></p>
-<h2 id="服务端示例"><a href="#服务端示例" class="headerlink" title="服务端示例"></a>服务端示例</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">  <span class="comment">//创建EventLoop</span></span><br><span class="line">  NioEventLoopGroup master = <span class="keyword">new</span> NioEventLoopGroup();</span><br><span class="line">  <span class="comment">//创建服务端引导</span></span><br><span class="line">  ServerBootstrap bootstrap = <span class="keyword">new</span> ServerBootstrap();</span><br><span class="line">  bootstrap.group(master);</span><br><span class="line">  bootstrap.option(ChannelOption.SO_KEEPALIVE, <span class="keyword">true</span>);</span><br><span class="line">  <span class="comment">//指定使用NioServerSocketChannel作为Channel类型</span></span><br><span class="line">  bootstrap.channel(NioServerSocketChannel.class);</span><br><span class="line">  <span class="comment">//注册一个ChannelInboundHandlerAdapter类型处理channel的连接</span></span><br><span class="line">  bootstrap.childHandler(<span class="keyword">new</span> ChannelInitializer&lt;SocketChannel&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">initChannel</span><span class="params">(SocketChannel ch)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">      <span class="comment">//在channel的pipeline中加入消息处理类型为ChannelInboundHandlerAdapter</span></span><br><span class="line">      ch.pipeline().addLast(<span class="keyword">new</span> MessageChannel());</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">//使用bind方法启动服务端的监听</span></span><br><span class="line">  ChannelFuture future = bootstrap.bind(<span class="number">30888</span>).sync();</span><br><span class="line">  future.channel().closeFuture().sync();</span><br><span class="line">  master.shutdownGracefully().sync();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">MessageChannel</span> <span class="keyword">extends</span> <span class="title">ChannelInboundHandlerAdapter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//处理消息</span></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">channelRead</span><span class="params">(ChannelHandlerContext ctx, Object msg)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    <span class="comment">//使用ByteBuf获取消息</span></span><br><span class="line">    ByteBuf buf = (ByteBuf) msg;</span><br><span class="line">    String message = buf.toString(CharsetUtil.UTF_8);</span><br><span class="line">    System.out.println(<span class="string">&quot;Client message:&quot;</span> + message);</span><br><span class="line">    <span class="comment">//服务端写消息给客户端</span></span><br><span class="line">    ctx.writeAndFlush(ctx.alloc().buffer().writeBytes((<span class="string">&quot;Copy message:&quot;</span> + message).getBytes()));</span><br><span class="line">    <span class="keyword">if</span> (<span class="string">&quot;bye&quot;</span>.equalsIgnoreCase(message.replace(<span class="string">&quot;\n&quot;</span>, <span class="string">&quot;&quot;</span>))) &#123;</span><br><span class="line">      ctx.writeAndFlush(ctx.alloc().buffer().writeBytes(<span class="string">&quot;bye&quot;</span>.getBytes()));</span><br><span class="line">      <span class="comment">//关闭连接</span></span><br><span class="line">      ctx.close();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//处理连接被激活的事件</span></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">channelActive</span><span class="params">(ChannelHandlerContext ctx)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;Client connect:&quot;</span> + ctx.channel().remoteAddress());</span><br><span class="line">    <span class="keyword">super</span>.channelActive(ctx);</span><br><span class="line">    <span class="comment">//写消息给客户端</span></span><br><span class="line">    ctx.channel().writeAndFlush(Unpooled.copiedBuffer(<span class="string">&quot;Connect success!&quot;</span>.getBytes()));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"> <span class="comment">//处理异常，异常后关闭连接</span></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">exceptionCaught</span><span class="params">(ChannelHandlerContext ctx, Throwable cause)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.exceptionCaught(ctx, cause);</span><br><span class="line">    cause.printStackTrace();</span><br><span class="line">    ctx.close();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>首先创建ServiceBootstrap实例。因为你准备使用NIO网络模型传输数据，所以使用NioEventLoopGroup来接受和处理新的连接，并且将Channel的类型指定为NioServiceSocketChannel。在这之后使用本地地址与指定的端口将服务器绑定到这个地址上监听新的连接请求。</p>
-<p>在请求的处理上使用特殊的类ChannelInitializer。这是一个关键的类型，当有一个新的连接被接受时会创建一个新的Channel实例，而ChannelInitializer会把MessageChannel类型的实例添加至Channel的Pipeline中；而MessageChannel将会处理入站消息并输出一些信息给客户端。（这里使用MessageChannel模拟业务处理逻辑）</p>
-<ul>
-<li>MessageChannel 实现了业务逻辑</li>
-<li>main方法引导服务启动</li>
-</ul>
-<p>引导过程中的步骤如下：</p>
-<ul>
-<li>创建一个ServiceBootstrap实例以引导和绑定服务器监听的地址与端口</li>
-<li>创建并分配一个NioEventLoopGroup实例以进行事件的处理</li>
-<li>当有新连接时使用一个ChannelInitializer实例化一个Channel</li>
-<li>使用ServiceBootstrap.bind()方法启动服务器监听</li>
-</ul>
-<h2 id="客户端示例"><a href="#客户端示例" class="headerlink" title="客户端示例"></a>客户端示例</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] arg)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">  NioEventLoopGroup group=<span class="keyword">new</span> NioEventLoopGroup()</span><br><span class="line">  Bootstrap bootstrap = <span class="keyword">new</span> Bootstrap();</span><br><span class="line">  bootstrap.channel(NioSocketChannel.class);</span><br><span class="line">  bootstrap.group(group)</span><br><span class="line">  bootstrap.option(ChannelOption.SO_KEEPALIVE,<span class="keyword">true</span>);</span><br><span class="line">  <span class="comment">//绑定远程服务地址与端口</span></span><br><span class="line">  bootstrap.remoteAddress(<span class="string">&quot;127.0.0.1&quot;</span>, <span class="number">30888</span>);</span><br><span class="line">  <span class="keyword">final</span> MessageChannel channel = <span class="keyword">new</span> MessageChannel();</span><br><span class="line">  bootstrap.handler(<span class="keyword">new</span> ChannelInitializer&lt;SocketChannel&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">initChannel</span><span class="params">(SocketChannel ch)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">      ch.pipeline().addLast(channel);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">//连接远程服务器</span></span><br><span class="line">  ChannelFuture channelFuture = bootstrap.connect().sync();</span><br><span class="line">  channelFuture.channel().closeFuture().sync();</span><br><span class="line">  group.shutdownGracefully();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@ChannelHandler</span>.Sharable</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">MessageChannel</span> <span class="keyword">extends</span> <span class="title">SimpleChannelInboundHandler</span>&lt;<span class="title">ByteBuf</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">//处理消息读</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">channelRead0</span><span class="params">(ChannelHandlerContext ctx, ByteBuf msg)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Client received: &quot;</span> + msg.toString(CharsetUtil.UTF_8));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//处理连接信息</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">channelActive</span><span class="params">(ChannelHandlerContext ctx)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;正在连接...&quot;</span>);</span><br><span class="line">      <span class="comment">//主动发送一条消息至远程服务器</span></span><br><span class="line">      ctx.channel().write(Unpooled.copiedBuffer(<span class="string">&quot;客户端的消息\n&quot;</span>.getBytes()));</span><br><span class="line">      <span class="comment">//冲刷消息</span></span><br><span class="line">      ctx.channel().flush();</span><br><span class="line">      <span class="keyword">super</span>.channelActive(ctx);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//处理连接关闭事件</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">channelInactive</span><span class="params">(ChannelHandlerContext ctx)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;连接关闭...&quot;</span>);</span><br><span class="line">      <span class="keyword">super</span>.channelInactive(ctx);</span><br><span class="line">    &#125;</span><br><span class="line">		<span class="comment">//处理异常，异常时关系channel</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">exceptionCaught</span><span class="params">(ChannelHandlerContext ctx, Throwable cause)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">      <span class="keyword">super</span>.exceptionCaught(ctx, cause);</span><br><span class="line">      cause.printStackTrace();</span><br><span class="line">      ctx.close();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<p>客户端的代码逻辑与服务端的逻辑基本相同，在Bootstrap类型上使用了Bootstrap类而不是ServiceBootStrap类，这和我们之前讲Java NIO时基本相同，就不多阐述了。这里可以看到不同的是MessageChannel类型客户端继承自SimpleChannelInboundHandler类型，服务端继承自ChannelInboundHandlerAdapter类型；其实没有什么区别，它们都是继承自ChannelInboundHandlerAdapter类型，只是SimpleChannelInboundHandler更方便处理。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/08/11/Netty%E5%85%A5%E9%97%A8-%E7%A4%BA%E4%BE%8B/" data-id="cks78swmi000836ub85at591a" data-title="" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Netty入门-为什么选择Netty" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9Netty/" class="article-date">
-  <time class="dt-published" datetime="2021-08-11T07:51:32.201Z" itemprop="datePublished">2021-08-11</time>
-</a>
     
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>网络编程无处不在，Java JDK内置提供了OIO(BIO)、NIO的支持；没有看过<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzkyMzIzNjIxMg==&mid=2247484130&idx=1&sn=e633a1bbcfa3e595e6384105ca0672d9&chksm=c1e960f9f69ee9ef16657d5442f3286267d5ce7d2b81a4c01290e1e0ed0528a1bd34f58fd9b8&token=2046374432&lang=zh_CN#rd">Java BIO浅析</a>、<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzkyMzIzNjIxMg==&mid=2247484140&idx=1&sn=9e2507b8f776d475c2268dbf46764c89&chksm=c1e960f7f69ee9e1ce49fd069b97f73da82f451f37ccb9a7206c3f5d7597d63a62dea80ab300&token=2046374432&lang=zh_CN#rd">Java NIO浅析</a>的小伙伴可以去看下BIO/NIO的小示例。但说到Java 网络编程少不了<strong>Netty</strong>；自它问世起就一直火到现在，像阿里的Dubbo框架、Jetty等都使用了Netty框架做为网络通信框架。<br>上篇<a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzkyMzIzNjIxMg==&mid=2247484156&idx=1&sn=7ca350ecc9fc895a331d2ac5e7c3647c&chksm=c1e960e7f69ee9f1a9081ea44450fc4e136af837f611155a479874242a33ecb32cfdf5e5d00d&token=2046374432&lang=zh_CN#rd">Netty框架:用Service与Client示例入门</a>中通过实现一个服务端与客户端互发消息功能的示例讲解了Netty框架NIO模型的网络编程方法，通过这样一个小示例了解决了Netty的使用方法。</p>
-<p>到此你是否有疑问，为什么要用Netty框架编写网络通信层呢？Netty对比Java JDK提供的网络通信API有哪些不同？</p>
-<p>在继续阅读下文前如果对Java JDK编写网络通信层不清楚的同学可以去看下用Java JDK 写的BIO与NIO通信的示例：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzkyMzIzNjIxMg==&mid=2247484130&idx=1&sn=e633a1bbcfa3e595e6384105ca0672d9&chksm=c1e960f9f69ee9ef16657d5442f3286267d5ce7d2b81a4c01290e1e0ed0528a1bd34f58fd9b8&token=2046374432&lang=zh_CN#rd">Java BIO浅析</a>、<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzkyMzIzNjIxMg==&mid=2247484140&idx=1&sn=9e2507b8f776d475c2268dbf46764c89&chksm=c1e960f7f69ee9e1ce49fd069b97f73da82f451f37ccb9a7206c3f5d7597d63a62dea80ab300&token=2046374432&lang=zh_CN#rd">Java NIO浅析</a></p>
-<h2 id="统一的API接口"><a href="#统一的API接口" class="headerlink" title="统一的API接口"></a>统一的API接口</h2><p>Netty框架的作用是实现网络通信，它提供了一套能用的网络通信API接口，这一套网络接口中包含了EventLoop、Channel、Buffer、Future等，通过这些接口可以统一规范的实现OIO、NIO、Epoll的网络缓和模型，在模型与模型之间迁移时提供了便利。Netty框架工作的网络模型中的传输层。<br><img src="http://img.jasony.top:980/file/1626227814592.png" alt="image-20210713170135447"></p>
-<p>Netty默认支持的网络传输协议有TCP、UDP、SCTP、UDT。</p>
-<table>
-<thead>
-<tr>
-<th align="center">传 输 方 式</th>
-<th align="center">TCP</th>
-<th align="center">UDP</th>
-<th align="center">SCTP</th>
-<th align="center">UDT</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">NIO</td>
-<td align="center">✔️</td>
-<td align="center">✔️</td>
-<td align="center">✔️</td>
-<td align="center">✔️</td>
-</tr>
-<tr>
-<td align="center">Epoll(linux)</td>
-<td align="center">✔️</td>
-<td align="center">✔️</td>
-<td align="center">❌</td>
-<td align="center">❌</td>
-</tr>
-<tr>
-<td align="center">OIO/BIO</td>
-<td align="center">✔️</td>
-<td align="center">✔️</td>
-<td align="center">✔️</td>
-<td align="center">✔️</td>
-</tr>
-</tbody></table>
-<p>对于以上传输方式在Netty中分别使用如下类实现：</p>
-<ul>
-<li>NIO: NioSocketChannel 实现channel功能，NioEventLoop实现EventLoop功能，NioEventLoopGroup实现EventLoopGroup功能</li>
-<li>OIO:OioSocketChannel 实现channel功能，OioEventLoop实现EventLoop功能，OioEventLoopGroup实现EventLoopGroup功能</li>
-<li>Epoll:EpollSocketChannel 实现channel功能，EpollEventLoop实现EventLoop功能，EpollEventLoopGroup实现EventLoopGroup功能</li>
-</ul>
-<p>另外Netty还实现了Jvm内的通信，使用LocalSocketChannel、LocalEventLoop、LocalEventLoopGroup进行实现，另外还是embedded的方法用于测试ChannelHandler，Local与embedded的方式就不多讲了。</p>
-<p>在Netty框架中NIO与OIO的底层实现还是使用Java jdk提供的API；Netty对这些Api进行了封装，具体后面再进行详细的分析。对于Epoll只在linux系统中有效，Netty官方也建议在Linux系统中使用Epoll的方式。</p>
-<p>使用Netty框架时在NIO/OIO/Epoll模型上可以很轻松的进行迁移，使用NIO的实现可以看<a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzkyMzIzNjIxMg==&mid=2247484156&idx=1&sn=7ca350ecc9fc895a331d2ac5e7c3647c&chksm=c1e960e7f69ee9f1a9081ea44450fc4e136af837f611155a479874242a33ecb32cfdf5e5d00d&token=2046374432&lang=zh_CN#rd">Netty框架：用Service与Client示例入门</a>；现在打算将应用部署到linux环境中并改用epoll进行实现，那我们只需要将EventLoop与Channel修改成Epoll对应的类就可以了，修改后的结果如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] arg)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">  <span class="comment">//将EventLoopGroup的类型由原来的NioEventLoopGroup修改为EpollEventLoopGroup</span></span><br><span class="line">  EpollEventLoopGroup group=<span class="keyword">new</span> EpollEventLoopGroup()</span><br><span class="line">  Bootstrap bootstrap = <span class="keyword">new</span> Bootstrap();</span><br><span class="line">  <span class="comment">//将SocketChannel类型由原来的NioSocketChannel修改为EpollSocketChannel</span></span><br><span class="line">  bootstrap.channel(EpollSocketChannel.class);</span><br><span class="line">  bootstrap.group(group)</span><br><span class="line">  bootstrap.option(ChannelOption.SO_KEEPALIVE,<span class="keyword">true</span>);</span><br><span class="line">  bootstrap.remoteAddress(<span class="string">&quot;127.0.0.1&quot;</span>, <span class="number">30888</span>);</span><br><span class="line">  <span class="keyword">final</span> MessageChannel channel = <span class="keyword">new</span> MessageChannel();</span><br><span class="line">  bootstrap.handler(<span class="keyword">new</span> ChannelInitializer&lt;SocketChannel&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">initChannel</span><span class="params">(SocketChannel ch)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">      ch.pipeline().addLast(channel);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  ChannelFuture channelFuture = bootstrap.connect().sync();</span><br><span class="line">  channelFuture.channel().closeFuture().sync();</span><br><span class="line">  group.shutdownGracefully();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>示例为客户端的代码，只需要简单的修改EventLoopGroup与SocketChannel的类型为Epoll对应的类型就可以完成切换，同样的修改成Oio也只需要修改这些点就可以了，这是Netty框架为统一Api后带来的好处。</p>
-<h2 id="零拷贝"><a href="#零拷贝" class="headerlink" title="零拷贝"></a>零拷贝</h2><p>Netty框架还有一个被神化的操作<strong>零拷贝</strong>；在网络编程中常常需要对传输的数据进行拷贝，例如从内核内存区拷贝到用户内存区(也就是数据的内核态转化为用户态)；但Netty的零拷贝并不是减少了数据从内核态到用户态的转换，而是在Jvm中对于用户态缓存的数据操作进行优化，体现在5个方面：</p>
-<ul>
-<li>Netty接收与发送的数据使用直接内存进行Socket读写，减少在缓存区的二次拷贝。</li>
-<li>文件传输使用FileRegion包装的transferTo方法直接将文件缓冲区的数据发送到目标Channel，避免循环文件缓冲区导致的内存拷贝</li>
-<li>提供CompositeByteBuf类，可以将多个ByteBuf逻辑上合并成一个ByteBuf，避免了需要合并数据时导致的拷贝</li>
-<li>通过wrap操作对byte[]、ByteBuf、ByteBuffer等类型包装成Netty的ByteBuf对象避免内存的拷贝</li>
-<li>Netty的ByteBuf支持slice操作，通过slice可以将一个ByteBuf分解为多个共享同一存储区域的ByteBuf避免需要操作部分数据时的拷贝</li>
-</ul>
-<p>上面这些优化都只是对在用户态的数据进行操作上的优化避免用户态数据操作间的拷贝，对于内核态到用户态的转换还是需要对数据进行拷贝。</p>
-<h2 id="选择Netty的理由"><a href="#选择Netty的理由" class="headerlink" title="选择Netty的理由"></a>选择Netty的理由</h2><p>如果统一的API接口与零拷贝这两个最大的优点都无法吸引你选择Netty框架学习Netty框架的话，我相信加上这些会让你觉得在项目中应用Netty框架是一个不错的选择：</p>
-<ul>
-<li>Netty框架封装了网络编程的复杂性，解决了网络编程中常常需要处理且难已处理的网络问题，例如网络闪断、客户端重复接入、安全认证、消息编解码、半包读等问题</li>
-<li>JDK NIO的Bug，例如臭名昭著的epoll bug，它会使Selector空轮询导致CPU 100%，虽然官方称在1.6版本的update18修复了该问题，但在1.7版本中仍旧存在，只是发生的概率降低了。</li>
-<li>使用JDK的NIO API 需要团队过多的关注网络编程本身，团队中需要有足够的网络编程经验且对Selector、ServiceSocketChannel、SocketChannel、ByteBuffer足够熟悉的人才能编写与高质量的NIO程序。</li>
-<li>对团队编码水平整体要求高，需要有额外的知识储备，例如多线程编程</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/08/11/Netty%E5%85%A5%E9%97%A8-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9Netty/" data-id="cks78swmg000636ubh2401gim" data-title="" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Netty入门-EventLoop与线程模型" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-EventLoop%E4%B8%8E%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/" class="article-date">
-  <time class="dt-published" datetime="2021-08-11T07:51:32.185Z" itemprop="datePublished">2021-08-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本节将讨论Netty框架中的EventLoop接口与线程模型，Netty是如果处理I/O事件循环等问题；Netty如何对任务进行调度等问题。下面通过一张图来展示本文的内容：</p>
-<h2 id="EventLoop"><a href="#EventLoop" class="headerlink" title="EventLoop"></a>EventLoop</h2><p>在Netty的定义中EventLoop接口只有一个方法<code>EventLoopGroup parent()</code>；方法用于返回当前EventLoop实现的实例所属的EventLoopGroup的引用。<br>Netty的EventLoop是一个协同设计采用两个基本的API:并发和网络编程。首先io.netty.util.concurrent名构建在JDK的java.util.concurrent包的基本之上，用来提供线程执行器。其次io.netty.channel包中的类为了与Channel的事件进行交互，扩展了这些接口/类。下图展示了类的层次结构：<br><img src="http://img.jasony.top:980/file/1627373565087.png" alt="image-20210727161243448"></p>
-<p>在使用EventLoop对任务作调度时能使用Java SDK提供的ScheduledExecutorService类型中的所有方法。例如服务间的心跳就可以直接使用EventLoop的任务调度实现：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ctx为ChannelHandlerContext</span></span><br><span class="line">Channel channel=ctx.channel();</span><br><span class="line">ScheduledFuture&lt;?&gt; future = ctx.channel().eventLoop().scheduleAtFixedRate(()-&gt;&#123;</span><br><span class="line">  <span class="comment">//发送心跳与检查心跳</span></span><br><span class="line">  System.out.println(<span class="string">&quot;心跳&quot;</span>);</span><br><span class="line">&#125;,<span class="number">60</span>,<span class="number">60</span>, TimeUnit.SECONDS);</span><br></pre></td></tr></table></figure>
-
-<p>如果需要检查或者取消调度任务则可以使用每个异步操作返回<code>ScheduledFuture</code>实例进行操作，ScheduledFuture是一个Future类型实例。</p>
-<p>下面通过<code>SingleThreadEventLoop</code>抽象类来讲讲EventLoop的实现细节：</p>
-<p>SingleThreadEventLoop继承于SingleThreadEventExecutor；SingleThreadEventExecutor相当于Java JDK中的线程池，作用是对事件进行异步调用，EventLoop的内部有一个单独的线程，负责处理所有分配给EventLoop的Channel的所有事件和任务，在EventLoop之上有EventLoopGroup；EventLoopGroup的责任是将新的连接(也就是新的Channel)分配给EventLoopGroup内关联的EventLoop。下面通过一张图来讲讲上面EventLoopGroup、EventLoop、Channel之前的关系：</p>
-<p><img src="http://img.jasony.top:980/file/1627376632340.png" alt="image-20210727170350543"></p>
-<p>关于SingleThreadEventExecutor暂时简单的理解一个任务池，负责异步任务的执行，任务队列的顺序使用FIFO的形式进行。</p>
-<p>写到这我想你应该大概了解Netty的EventLoop了；而这样的事件驱动编程模型正式经典的<strong>Reactor网络模型</strong>；下面我们引入NioEventLoop来简单的讲下Netty是如果实现事件驱动的。看过我前面讲NIO编程的同学应该都清楚使用JAVA JDK提供的NIO写一个简单的网络程序时需要处理accept、connect、read、write事件，这些事件都需要注册到Selector当中，再通过<code>Selector.selectedKeys()</code>方法获取到所有事件并一一处理。<br>在Netty中EventLoop不光要处理I/O事件，还需要处理上面我们提到的任务；下面我们通过一段NIOEventLoop类中的源码来看看EventLoop是如何处理I/O事件和任务的：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> selectCnt = <span class="number">0</span>;</span><br><span class="line">  <span class="comment">//使用死循环进行轮询</span></span><br><span class="line">  <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">int</span> strategy;</span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">//hasTasks为ture执行selectNow(),否则返回SelectStrategy.SELECT，会优先处理I/O事件</span></span><br><span class="line">        strategy = selectStrategy.calculatStrategy(selectNowSupplier, hasTasks());</span><br><span class="line">        <span class="keyword">switch</span> (strategy) &#123;</span><br><span class="line">          <span class="keyword">case</span> SelectStrategy.CONTINUE:</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">          <span class="keyword">case</span> SelectStrategy.BUSY_WAIT:</span><br><span class="line">            <span class="comment">// fall-through to SELECT since the busy-wait is not supported with NIO</span></span><br><span class="line">					<span class="comment">//返回SELECT表示当前没有任务</span></span><br><span class="line">          <span class="keyword">case</span> SelectStrategy.SELECT:</span><br><span class="line">            <span class="keyword">long</span> curDeadlineNanos = nextScheduledTaskDeadlineNanos();</span><br><span class="line">            <span class="keyword">if</span> (curDeadlineNanos == -<span class="number">1L</span>) &#123;</span><br><span class="line">              curDeadlineNanos = NONE; <span class="comment">// nothing on the calendar</span></span><br><span class="line">            &#125;</span><br><span class="line">            nextWakeupNanos.set(curDeadlineNanos);</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">              <span class="comment">//再次判断是否有任务，没有时执行Selector.selectNow()方法获取I/O事件，</span></span><br><span class="line">              <span class="comment">//没有时selectNow会阻塞线程，阻塞时间通过curDeadlineNanos控制</span></span><br><span class="line">              <span class="keyword">if</span> (!hasTasks()) &#123;</span><br><span class="line">                <span class="comment">//没有任务时执行Selector.selectNow()查询当前的I/O事件</span></span><br><span class="line">                strategy = select(curDeadlineNanos);</span><br><span class="line">              &#125;</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">              <span class="comment">// This update is just to help block unnecessary selector wakeups</span></span><br><span class="line">              <span class="comment">// so use of lazySet is ok (no race condition)</span></span><br><span class="line">              nextWakeupNanos.lazySet(AWAKE);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// fall through</span></span><br><span class="line">          <span class="keyword">default</span>:</span><br><span class="line">        &#125;</span><br><span class="line">      &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        <span class="comment">// If we receive an IOException here its because the Selector is messed up. Let&#x27;s rebuild</span></span><br><span class="line">        <span class="comment">// the selector and retry. https://github.com/netty/netty/issues/8566</span></span><br><span class="line">        rebuildSelector0();</span><br><span class="line">        selectCnt = <span class="number">0</span>;</span><br><span class="line">        handleLoopException(e);</span><br><span class="line">        <span class="keyword">continue</span>;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      selectCnt++;</span><br><span class="line">      cancelledKeys = <span class="number">0</span>;</span><br><span class="line">      needsToSelectAgain = <span class="keyword">false</span>;</span><br><span class="line">      <span class="comment">//IO事件的比率</span></span><br><span class="line">      <span class="keyword">final</span> <span class="keyword">int</span> ioRatio = <span class="keyword">this</span>.ioRatio;</span><br><span class="line">      <span class="keyword">boolean</span> ranTasks;</span><br><span class="line">      <span class="comment">//为100时立即处理I/O事件</span></span><br><span class="line">      <span class="keyword">if</span> (ioRatio == <span class="number">100</span>) &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">          <span class="comment">//通过SelectNow获取的事件数量</span></span><br><span class="line">          <span class="keyword">if</span> (strategy &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="comment">//执行I/O事件</span></span><br><span class="line">            processSelectedKeys();</span><br><span class="line">          &#125;</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">          <span class="comment">// 执行完I/O事件后执行一次任务</span></span><br><span class="line">          ranTasks = runAllTasks();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//ioRatio没有100时且当前有I/O事件时</span></span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (strategy &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">long</span> ioStartTime = System.nanoTime();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">          <span class="comment">//执行I/O事件</span></span><br><span class="line">          processSelectedKeys();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">          <span class="comment">// 通过ioRatio与I/O事件执行时间计算出任务执行超时时间</span></span><br><span class="line">          <span class="keyword">final</span> <span class="keyword">long</span> ioTime = System.nanoTime() - ioStartTime;</span><br><span class="line">          ranTasks = runAllTasks(ioTime * (<span class="number">100</span> - ioRatio) / ioRatio);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//没有I/O事件时将时间全部分配给任务执行</span></span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        ranTasks = runAllTasks(<span class="number">0</span>); <span class="comment">// This will run the minimum number of tasks</span></span><br><span class="line">      &#125;</span><br><span class="line">			<span class="comment">//通过selectCnt计数解决多次selectNow后没有I/O事件的问题</span></span><br><span class="line">      <span class="keyword">if</span> (ranTasks || strategy &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">//执行过任务或者I/O事件认为是有效的就重置selectCnt</span></span><br><span class="line">        <span class="keyword">if</span> (selectCnt &gt; MIN_PREMATURE_SELECTOR_RETURNS &amp;&amp; logger.isDebugEnabled()) &#123;</span><br><span class="line">          logger.debug(<span class="string">&quot;Selector.select() returned prematurely &#123;&#125; times in a row for Selector &#123;&#125;.&quot;</span>,</span><br><span class="line">                       selectCnt - <span class="number">1</span>, selector);</span><br><span class="line">        &#125;</span><br><span class="line">        selectCnt = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">//无效时rebuild selector</span></span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (unexpectedSelectorWakeup(selectCnt)) &#123; <span class="comment">// Unexpected wakeup (unusual case)</span></span><br><span class="line">        selectCnt = <span class="number">0</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (CancelledKeyException e) &#123;</span><br><span class="line">      <span class="comment">// Harmless exception - log anyway</span></span><br><span class="line">      <span class="keyword">if</span> (logger.isDebugEnabled()) &#123;</span><br><span class="line">        logger.debug(CancelledKeyException.class.getSimpleName() + <span class="string">&quot; raised by a Selector &#123;&#125; - JDK bug?&quot;</span>,</span><br><span class="line">                     selector, e);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Error e) &#123;</span><br><span class="line">      <span class="keyword">throw</span> (Error) e;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Throwable t) &#123;</span><br><span class="line">      handleLoopException(t);</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">      <span class="comment">// Always handle shutdown even if the loop processing threw an exception.</span></span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (isShuttingDown()) &#123;</span><br><span class="line">          closeAll();</span><br><span class="line">          <span class="keyword">if</span> (confirmShutdown()) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125; <span class="keyword">catch</span> (Error e) &#123;</span><br><span class="line">        <span class="keyword">throw</span> (Error) e;</span><br><span class="line">      &#125; <span class="keyword">catch</span> (Throwable t) &#123;</span><br><span class="line">        handleLoopException(t);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这段代码中的主要作用是分配I/O事件与任务之间的执行时间片，通过变量ioRatio进行比率的计算来分配执行时间。</p>
-<p>通过对上面代码的分析可以总结出如下三点：</p>
-<ol>
-<li>每一个EventLoop中都由一个单独的线程处理并与EventLoop一一对应</li>
-<li>EventLoop将注册的Channel产生的I/O事件和通过EventLoop添加的任务调度都放在同一线程内处理，通过ioRatio分配执行时间</li>
-<li>EventLoop会优先处理I/O事件</li>
-<li>处理I/O事件时如果出现阻塞会同时阻塞I/O事件和任务调度队列</li>
-<li>任务调度队列中的任务阻塞调用时会同时阻塞I/O事件的处理</li>
-</ol>
-<p>最后用一个简单的流程图贯穿下EventLoop的核心代码吧：</p>
-<img src="http://img.jasony.top:980/file/1627395241353.png" alt="image-20210727221327047" style="zoom:67%;" />
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/08/11/Netty%E5%85%A5%E9%97%A8-EventLoop%E4%B8%8E%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/" data-id="cks78swmf000536ubggygebu9" data-title="" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Netty入门-ChannelPipeline" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-ChannelPipeline/" class="article-date">
-  <time class="dt-published" datetime="2021-08-11T07:51:32.170Z" itemprop="datePublished">2021-08-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzkyMzIzNjIxMg==&mid=2247484182&idx=1&sn=a6bb16eba79c06155f7e53829bbf5ee7&chksm=c1e9610df69ee81be279d9407057da492cfc871bdba663071d302fd05b203ea5155e94a5746a&token=38619611&lang=zh_CN#rd">上篇</a>讲解ChannelHandler的使用以及相关子类的使用，这一篇继续来讲讲ChannelPipeline与ChannelHandlerContext，它们三者的有效组合让Netty在处理业务逻辑上得心应手。在讲ChannelHandlerContext之前先来讲讲ChannelPipeline。</p>
-<h2 id="ChannalPipeline"><a href="#ChannalPipeline" class="headerlink" title="ChannalPipeline"></a>ChannalPipeline</h2><p><strong>Pipeline</strong> 可以翻译成管道，在Netty中ChannelPipeline的作用也如同一条管道，通过这条管道处理入站与出站的数据、事件；通过ChannelPipeline对ChannelHandler的有效编排和交互组成一个应用程序数据和事件处理逻辑的核心。</p>
-<p>Netty会对每一个新创建的Channel分配一个与之关联的新的ChannelPipeline实例，这个关联是永久的并且是一一对应的，一个Channel不能附加另外一个ChannelPipeline实例也不能分离当前关联的ChannelPipeline实例。下面通过一个示例来看看：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">bootstrap.childHandler(<span class="keyword">new</span> ChannelInitializer&lt;SocketChannel&gt;() &#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">initChannel</span><span class="params">(SocketChannel ch)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    <span class="comment">//添加MessageChannel至pipeline中</span></span><br><span class="line">    ch.pipeline().addLast(<span class="keyword">new</span> MessageChannel());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>ChannelInitializer是一个ChannelHandler类型，作用是有新的连接进来后通过ChannelHandler的<code>handlerAdded</code>事件完成Channel中的ChannelPipeline的初始编排工作，<code>handlerAdded</code>事件会委托给<code>initChannel</code>方法执行，也就是上面例子中看到的，在<code>initChannel</code>方法中可以通过参数获取到当前新连接并创建关联的Channel实例，通过Channal实例的<code>pipeline()</code>方法获取到一一对应的ChannelPipeline实例，再通过<code>addList</code>方法加入ChannelHadler类型的实例变量，在执行完<code>initChannel</code>方法后ChannelInitializer会将自己从当前的Channel关联的ChannelPipeline中移除。</p>
-<p>ChannalPipeline可以用于编排ChannelHandler的方法列表：</p>
-<table>
-<thead>
-<tr>
-<th>方法</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>addFirst<br />addBefore<br />addAfter<br />addLast</td>
-<td>将一个ChannelHandler添加到ChannelPipeline中</td>
-</tr>
-<tr>
-<td>remove</td>
-<td>将一个ChannelHandler从ChannelPipeline中移除</td>
-</tr>
-<tr>
-<td>replace</td>
-<td>将ChannelPipeline中的一个ChannelHandler进行替换，<br />替换成另一个ChannelHandler</td>
-</tr>
-</tbody></table>
-<p>阅读过前面一部分文章的同学会知道Netty对ChannelHandler又做了区分，分为入站与出站，如下图：</p>
-<p><img src="http://img.jasony.top:980/file/1626770286984.png" alt="image-20210720163804933"></p>
-<p>通常入站与出站处理器在编排到Pipeline中时会是混合着的，这样的情况Pipeline能正确的处理入站与出站吗？ChannelPipeline可以通过本身传播事件方法，如果一个入站事件被触发，它将从Pipeline的头部开始一直向后传递直到尾端，这里需要通过ChannelPipeline的相对论来讨论事件传播的正确性问题；Netty总是将入站口作为头部，对出站口作为尾部(内部只有一条，使用链表存储所有处理器)。当我们使用<code>ChannelPipeline.add*()</code>的方法将入站与出站处理器混合添加到Pipeline之后，在Pipeline中将会按添加的顺序进行排列，就如上图中每个处理器上的编号一样。ChannelPipeline在传播事件时会测试Pipeline中一个ChannelHandler的类型是否和事件运动的方向相匹配，如果不匹配将跳过该ChannelHandler将继续向前，直接到尾端(这里就体现了ChannelInboundHandler与ChannelOutboundHandler的重要性，ChannelPipeline在传播时判断下一个能ChannelHandler的功能是通过ChannelHandlerMask类实现，篇幅问题就放到以后的源码分析时再讲解吧)。所以在ChannelPipeline中虽然只有使用一条链表来保存所有的ChannelHandler，但通过事件传播方向的检测将一条逻辑上拆分成两条从而实现了对于入站与出站两条链路上分别有各自的头部与尾部。</p>
-<p>ChannelPipeline中使用链表来存储ChannelHandler，是怎样存储的呢？</p>
-<h2 id="ChannelHandlerContext"><a href="#ChannelHandlerContext" class="headerlink" title="ChannelHandlerContext"></a>ChannelHandlerContext</h2><p>调用<code>ChannelPipeline.add*()</code>方法添加一个ChannelHandler至当前Pipeline中时都会创建一个ChannelHandlerContext实例，将添加的ChannelHandler包装在ChannelHandlerContext实例中。而ChannelPipeline链表上的节点类型就是ChannelHandlerContext。上面说到ChannilPipeline是可以进行事件传播的，这是因为其继承了<code>ChannelInboundInvoker</code>与<code>ChannelOutboundInvoker</code>，这两个Invoker接口定义了入站与出站各方向上的事件所对应的方法(这两个接口在后续讲解Netty的源码时再深入导论，这里就暂且放过，只要知道就好了)；ChannelHanderContext也继承了这两个Invoker接口类，这也就是说通过ChannelHanderContext实现也可以触发事件的传播，下面来看个例子：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">MessageChannel</span> <span class="keyword">extends</span> <span class="title">ChannelInboundHandlerAdapter</span> </span>&#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">channelRead</span><span class="params">(ChannelHandlerContext ctx, Object msg)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    <span class="comment">//使用pipeline传播事件，注意这有可能会导致死循环</span></span><br><span class="line">    ctx.pipeline().fireChannelRead(msg);</span><br><span class="line">    <span class="comment">//使用ChannelHandlerContext传播事件</span></span><br><span class="line">    ctx.fireChannelRead(msg);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>ChannelHandlerContext.pipeline()</code>获取到的是当前Channel所关联的pipeline，上面也提到过通过pipeline传播事件时会从头部开始，当你自己尝试使用上面的示例运行时得到的结果将会是一个死循环；而通过<code>ChannelHandlerContext.fireChannelRead</code>传播事件将会又下一个ChannelHandler开始传播，当重写ChannelInboundHandlerAdapter实现业务逻辑时让事件传播下去就需要显示调用<code>ChannelHandlerContext.fireChannelRead</code>或者调用<code>super.fireChannelRead</code>方法，不然事件在当前ChannelHandler就会结束传播。</p>
-<p>对事件传播的两种不同方式特点说明：</p>
-<ol>
-<li>ChannelPipeline的事件传播是通过将事件方法的执行委托给链表中的ChannelHandlerContext执行(ChannelPipeline与ChannelHandlerContext都实现了<code>ChannelInboundInvoker</code>与<code>ChannelOutboundInvoker</code>)</li>
-<li>调用<code>ChannelPipeline.fireChannelRead</code>传播事件将从链表的头部开始触发(是链表的头部，不是事件传播方向上的，但传播过程中会根据事件的类型判断方向)</li>
-<li>ChannelHandlerContext作为Pipeline链表的节点类型承担了事件传播的责任，Pipeline的责任只是编排，而传播与承载的主要角色是ChannelHandlerContext</li>
-</ol>
-<p>通过这个说明应该能理解在事件传播是怎么进行的了，通过<code>ctx.pipeline().fireChannelRead</code>传播事件和通过<code>ctx.fireChannelRead</code>传播事件的区别与结果也不难理解了。</p>
-<h2 id="类关系图"><a href="#类关系图" class="headerlink" title="类关系图"></a>类关系图</h2><p>最后通过一张类关系图来回顾下上面本篇的知识点吧。</p>
-<p><img src="http://img.jasony.top:980/file/1626834691901.png" alt="image-20210720173439304"></p>
-<p>ChannelPipeline与ChannelHandlerContext都继承自ChannelInboundInvoker与ChannelOutbountInvoker以实现事件的传播功能；ChannelHandlerContext包装了ChannelHandler实例，负责事件传播过程中调用具体的ChannelHandler以实现应用程序功能，ChannelPipeline通过链表存储ChannelHandlerContext，负责事件的源的调用，将事件执行委托给ChannelHandlerContext实际执行。</p>
-<p>执行流程如下：</p>
-<p><img src="http://img.jasony.top:980/file/1626774672385.png" alt="image-20210720175109481"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/08/11/Netty%E5%85%A5%E9%97%A8-ChannelPipeline/" data-id="cks78swmc000436ubbnv91yic" data-title="" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Netty入门-ChannelHandler" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-ChannelHandler/" class="article-date">
-  <time class="dt-published" datetime="2021-08-11T07:51:32.157Z" itemprop="datePublished">2021-08-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>接着上篇的ByteBuf，这一篇讲讲ChannelHandler；ChannelHandler在Netty中作为处理Channel中的事件以及数据的一种方式存在，以Channel中还有ChannelPipeline，它负责编排ChannelHandler以使ChannelHandler能有效的协同作业。</p>
-<h2 id="Channel"><a href="#Channel" class="headerlink" title="Channel"></a>Channel</h2><p>Channel是NIO中的重要组件之一，它持有着远程的数据，处理连接、监听、读、写等事件操作，也就是说连接一个远程服务器、读写网络数据等等都需要Channel这个组件的参与，在Java JDK中使用NIO编程时处理Channel的事件是在Selector中进行手动的注册，每完成一个操作注册一次，然后再通过Selector进行轮询的方式获取有效的的事件对应的Channel进行处理。而在Netty中不再需要这样，Netty中的Channel同样也有事件，但Netty将其进行了包装，将将这些事件修改成了生命周期的概念；</p>
-<p>Channel生命同期：</p>
-<table>
-<thead>
-<tr>
-<th align="center">状态</th>
-<th align="center">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">ChannelUnregistered</td>
-<td align="center">Channel已经被创建，但还未注册到EventLoop</td>
-</tr>
-<tr>
-<td align="center">ChannelRegistered</td>
-<td align="center">Channel已经被注册到EventLoop</td>
-</tr>
-<tr>
-<td align="center">ChannelActive</td>
-<td align="center">Channel已经处理活动状态并可以接收与发送数据</td>
-</tr>
-<tr>
-<td align="center">ChannelInactive</td>
-<td align="center">Channel没有连接到远程节点</td>
-</tr>
-</tbody></table>
-<p>Channel生命状态图：</p>
-<p><img src="http://img.jasony.top:980/file/1626661926763.png" alt="image-20210719103204408"></p>
-<h2 id="ChannelHandler"><a href="#ChannelHandler" class="headerlink" title="ChannelHandler"></a>ChannelHandler</h2><p>ChannelHandler是Netty框架中特有的，它是处理Channel中事件一种方式，对于入站与出站消息又分别使用ChannelInboundHandler与ChannelOutboundHandler来处理，但在<a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzkyMzIzNjIxMg==&mid=2247484156&idx=1&sn=7ca350ecc9fc895a331d2ac5e7c3647c&chksm=c1e960e7f69ee9f1a9081ea44450fc4e136af837f611155a479874242a33ecb32cfdf5e5d00d&token=38619611&lang=zh_CN#rd">之前的示例</a>中并没有直接使用这两个类，而是使用了ChannelInboundHandlerAdapter(因为没有处理出站也就没有使用ChannelOutboundHandlerAdapter)；下面先来看看ChannelHandler的生命周期方法：</p>
-<p>ChannelHandler生命周期：</p>
-<table>
-<thead>
-<tr>
-<th>类型</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>handlerAdded</td>
-<td>当把ChannelHandler添加到ChannelPipeline中时被调用</td>
-</tr>
-<tr>
-<td>handlerRemoved</td>
-<td>当把ChannelHandler在ChannelPipeline中移除时调用</td>
-</tr>
-<tr>
-<td>exceptionCaught</td>
-<td>当ChannelHandler在处理过程中出现异常时调用</td>
-</tr>
-</tbody></table>
-<p>这个生命周期可以在ChannelHandler的类定义中看到，在使用过程中不会直接使用这个接口，而是会使用子类型ChannelInboundHandlerAdapter和ChannelOutboundHandlerAdapter。通过命名能看出这两个类是一个适配器，它们的父类是ChannelInboundHandler与ChannelOutboundHandler。</p>
-<ul>
-<li>ChannelOutboundHandler：处理出站数据并且允许拦截所有的操作</li>
-<li>ChannelInboundHandler：处理入站数据以及各种状态的变化</li>
-</ul>
-<h2 id="ChannelInboundHandler"><a href="#ChannelInboundHandler" class="headerlink" title="ChannelInboundHandler"></a>ChannelInboundHandler</h2><p>在ChannelInboundHandler中可以获取网络数据并处理各种事件，下面列出了能处理的各种事件(这些事件每一个都是ChannelInboundHandler中的方法)：</p>
-<table>
-<thead>
-<tr>
-<th>事件</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>channelRegistered</td>
-<td>当Channel注册到它的EventLoop并且能够处理I/O时调用</td>
-</tr>
-<tr>
-<td>channelUnregistered</td>
-<td>当Channel从它的EventLoop中注销并且无法处理任何I/O时调用</td>
-</tr>
-<tr>
-<td>channelActive</td>
-<td>当Channel处理于活动状态时被调用</td>
-</tr>
-<tr>
-<td>channelInactive</td>
-<td>当Channel不再是活动状态且不再连接它的远程节点时被调用</td>
-</tr>
-<tr>
-<td>channelReadComplete</td>
-<td>当Channel上的一个读操作完成时被调用</td>
-</tr>
-<tr>
-<td>channelRead</td>
-<td>当从Channel读取数据时被调用</td>
-</tr>
-<tr>
-<td>channelWritabilityChanged</td>
-<td>当Channel的可写状态发生改变时被调用</td>
-</tr>
-<tr>
-<td>userEventTriggered</td>
-<td>当ChannelInboundHandler.fireUserEventTriggered()方法被调用时触发</td>
-</tr>
-</tbody></table>
-<p>在应用中可以通过channelRead方法读取网络数据，但通过直接继承ChannelInboundHandler的子类来说，使用channelRead方法需要注意需要显示的释放与池化ByteBuf实例相关的内存，为此Netty提供了一个实用方法：ReferenceCountUtil.release()方法，在之前的示例中并没有这样使用，所以举一个简单的例子以供参考：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Sharable</span></span><br><span class="line"><span class="comment">//Discradhandler扩展自ChannelInboundHandlerAdapter</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DiscardHandler</span> <span class="keyword">extends</span> <span class="title">ChannelInboundHandlerAdapter</span></span>&#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">channelRead</span><span class="params">(ChannelHandlerContext ctx,Object msg)</span></span>&#123;</span><br><span class="line">    <span class="comment">//释放msg</span></span><br><span class="line">    ReferenceCountUtil.release(msg);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Netty另外还提供了一个类来简化这一过程SimpleChannelInboundHandler类，这个类通过一个通过的过程简化了上面释放内存的操作，使用示例如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DiscardHandler</span> <span class="keyword">extends</span> <span class="title">SimpleChannelInboundHandler</span>&lt;<span class="title">Object</span>&gt;</span>&#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">channelRead0</span><span class="params">(ChannelHandlerContext ctx,Object msg)</span></span>&#123;</span><br><span class="line">		<span class="comment">//在这里不需要显示的对资源msg进行释放</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>另外Netty还提供了一个资源泄漏的诊断类，它可以帮助我们在调试时发现问题，这个类便是ResourceLeakDetector，它将对应用程序的缓冲区分配做大约1%的采样来检测内存泄漏，当然它不止这一点本事：</p>
-<table>
-<thead>
-<tr>
-<th>级别</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>DISABLED</td>
-<td>禁用泄漏检测</td>
-</tr>
-<tr>
-<td>SIMPLE</td>
-<td>使用1%的默认采样率检测并报告内存泄漏这是一个默认级别</td>
-</tr>
-<tr>
-<td>ADVANCED</td>
-<td>使用默认的采样率报告所发现的任何泄漏以及对应的消息被访问的位置</td>
-</tr>
-<tr>
-<td>PARANOID</td>
-<td>类似于ADVANCED，但会对所有的访问进行采样。</td>
-</tr>
-</tbody></table>
-<h2 id="ChannelOutboundHandler"><a href="#ChannelOutboundHandler" class="headerlink" title="ChannelOutboundHandler"></a>ChannelOutboundHandler</h2><p>出站的数据和操作由ChannelOutboundHandler接口处理，它定义的方法将会被Channel、ChannelPipeline、ChannelHandlerContext调用；ChannelOutBoundHandler的强大之处在于可以按需要推迟操作或者事件，这样就可以处理一些相对复杂的请求，例如远程节点暂停写入，那么可以通过ChannelOutboundHandler的处理推迟冲刷操作并在稍后继续。下面来看看ChannelOutboundHandler定义了那些处理方法：</p>
-<table>
-<thead>
-<tr>
-<th>方法</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>bind</td>
-<td>当请求将Channel绑定到本地地址时被调用</td>
-</tr>
-<tr>
-<td>connet</td>
-<td>当请求将Channel连接到远程节点时被调用</td>
-</tr>
-<tr>
-<td>disconnect</td>
-<td>当请求将Channel从远程节点断开时调用</td>
-</tr>
-<tr>
-<td>close</td>
-<td>当请求关闭Channel时调用</td>
-</tr>
-<tr>
-<td>deregister</td>
-<td>当请求将Channel从它的EventLoop注销时调用</td>
-</tr>
-<tr>
-<td>read</td>
-<td>当请求从Channel中读取数据时调用</td>
-</tr>
-<tr>
-<td>flush</td>
-<td>当请求通过Channel将入队数据冲刷到远程节点时调用</td>
-</tr>
-<tr>
-<td>write</td>
-<td>当请求通过Channel将数据写入远程节点时被调用</td>
-</tr>
-</tbody></table>
-<h2 id="ChannelHandler关系类图"><a href="#ChannelHandler关系类图" class="headerlink" title="ChannelHandler关系类图"></a>ChannelHandler关系类图</h2><p>最后用一张图来看看ChannelHandler、ChannelOutboundHandler、ChannelInboundHandler接口与ChannelHandlerAdapter、ChannelInboundHandlerAdapter、ChannelOutboundHandlerAdapter适配类之前的继承关系：</p>
-<p><img src="http://img.jasony.top:980/file/1626665571177.png" alt="image-20210719113249134"></p>
-<p>通过这个类图了解可以得到，当需要处理入站消息时只需要继承ChannelInboundHandlerAdapter就可以实现大部分的功能，包含读、注册等；当需要处理出站消息时只需要继承ChannelOutboundHandlerAdapter同样可以实现。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/08/11/Netty%E5%85%A5%E9%97%A8-ChannelHandler/" data-id="cks78swmb000336ub7iwoggro" data-title="" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Netty入门-Bytebuf" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-Bytebuf/" class="article-date">
-  <time class="dt-published" datetime="2021-08-11T07:51:32.139Z" itemprop="datePublished">2021-08-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在网络上传输的数据总是以字节为单位，Java NIO使用ByteBuffer作为字节的容器，使用起来比较繁琐与复杂。Netty使用ByteBuf作为ByteBuffer的替代品，但又具备ByteBuffer的功能且功能更强大。</p>
-<h2 id="ByteBuf"><a href="#ByteBuf" class="headerlink" title="ByteBuf"></a>ByteBuf</h2><p>ByteBuf将会是使用Netty框架开发网络程序中使用频率较高的工具之一；Netty的数据处理通常由ByteBuf与ByteBufHolder这两个组件完成。下面先来看看ByteBuf的一些优点：</p>
-<ul>
-<li>通过内置的复合缓冲区类型实现了透明的零拷贝</li>
-<li>容量可以按需要增长</li>
-<li>在读与写两种模式之间切换不需要像ByteBuffer一样需要调用flip方法，读与写模式之间使用不同的索引</li>
-<li>支持方法之间的链式调用</li>
-<li>用户可以自定义扩展缓冲区类型</li>
-<li>支持池化</li>
-<li>支持引用计数</li>
-</ul>
-<p>ByteBuf维护了两个不同的索引，一个是读索引(readIndex)一个是写索引(writeIndex)，调用read开头的方法时readIndex将会增加，调用write开头方法时writeIndex将会增加。</p>
-<p><img src="http://img.jasony.top:980/file/1626402589948.png" alt="image-20210716102946041"></p>
-<p>这是一个初始大小为16bit的ByteBuf中writeIndex、readIndex、capacity的使用情况，在ByteBuf中这三个变量的关系是0&lt;=readIndex&lt;=writeIndex&lt;=capacity。</p>
-<p><img src="http://img.jasony.top:980/file/1626403159616.png" alt="image-20210716103917967"></p>
-<p>我们考虑下，如果readIndex==writeIndex时继续读取数据会出现什么情况？如果继续读将会读取到写入的数据，所以writeIndex-readIndex就相当时最大可读的字节数，在ByteBuf中readIndex ==writeIndex时再继续读就会出现IndexOutOfBoundsException异常，另外没有在图中体现的还有一个变量maxCapacity，代表ByteBuf的最大容量，当写操作超过这个值时将会提示一个异常，默认的限制是Interge.MAX_VALUE。在图中还有一个变量capacity，这个表示当前容量。</p>
-<h2 id="堆缓冲区、直接缓冲区与复合缓存冲区"><a href="#堆缓冲区、直接缓冲区与复合缓存冲区" class="headerlink" title="堆缓冲区、直接缓冲区与复合缓存冲区"></a>堆缓冲区、直接缓冲区与复合缓存冲区</h2><p>ByteBuf分为两个缓存区模式：堆缓冲区与直接缓冲区；堆缓冲区中将缓冲的数据存放在JVM堆内存中，这种模式也被称为<strong>支持数组</strong>，内部使用byte[]存储数据，对于缓冲区的扩容使用System.arrayCopy操作，这个模式的优点在于可以在没有使用池化技术的情况下快速分配和释放内存，下面通过示例来看看如何使用：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//分配一个非池化的buffer</span></span><br><span class="line">ByteBuf buf = Unpooled.buffer(<span class="number">16</span>);</span><br><span class="line"><span class="comment">//通过hasArray方法判断Buf的类型是堆缓存区还是直接缓冲区</span></span><br><span class="line">System.out.println(buf.hasArray() ? <span class="string">&quot;ByteBuf is heap buf.&quot;</span> : <span class="string">&quot;ByteBuf is direct buf&quot;</span>);</span><br><span class="line"><span class="comment">//获取堆缓冲区中的数据</span></span><br><span class="line"><span class="keyword">byte</span>[] array=buf.array();</span><br></pre></td></tr></table></figure>
-
-<p>如果是直接缓冲区在尝试调用buf.array()方法获取缓冲数组时会得到一个UnsuppertedOperationException的异常。</p>
-<p>在某些情况下使用堆缓冲区会导致额外的拷贝操作，这进可以使用堆外内存来避免堆外数据拷贝到堆内的情况；为了应对这样的需求可以使用ByteBuf的<strong>直接缓冲区</strong>模式。Java JDK中的Bytebuffer类允许JVM实现通过本地调用来分配内存，在ByteBuffer的Javadoc明确指出：“直接缓冲区的内容将驻留在常规的会被垃圾回收的堆之外”。这也是为会直接缓冲区对于网络数据传输是理想的选择；但直接缓冲区也有它自己的缺点，在分配与释放上是昂贵的。下面通过一个示例来看看如何使用直接缓冲区读取数据：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建一个直接内存缓冲区</span></span><br><span class="line">ByteBuf buf = Unpooled.directBuffer(<span class="number">16</span>);</span><br><span class="line"><span class="comment">//判断是否为直接缓冲区</span></span><br><span class="line"><span class="keyword">if</span>(!buf.hasArray())&#123;</span><br><span class="line">  <span class="comment">//获取可读的字节数</span></span><br><span class="line">   <span class="keyword">int</span> length = buf.readableBytes();</span><br><span class="line">  <span class="comment">//创建一个字节数组用于存储缓冲数据</span></span><br><span class="line">   <span class="keyword">byte</span>[] array = <span class="keyword">new</span> <span class="keyword">byte</span>[length];</span><br><span class="line">  <span class="comment">//从可读的位置获取所有的数据</span></span><br><span class="line">   buf.getBytes(buf.readerIndex(),array);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>如果有多个缓冲区，这些缓冲区中混合着直接缓冲与堆缓冲，现在需要读取这些缓冲区的数据，通常我们会创建一个数组后再将这些缓冲区的数据一一复制到这个数组中；但这无疑会增加数据拷贝带来的损耗；Netty为应对这样的场景提供了<strong>复合缓冲区</strong>；复合缓冲区可以将多个不同模式的ByteBuf缓冲区进行聚合，这个聚合的类便是CompositeByteBuf，有了CompositeByteBuf就可以非常容易的对缓冲区进行聚合后继续操作，且可以防止因聚合带来的数据拷贝问题，还是通过一段示例来看看如何使用：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//不使用CompositeByteBuf进行缓冲区的聚合</span></span><br><span class="line">ByteBuffer[] buffers=<span class="keyword">new</span> ByteBuffer[]&#123;header,body&#125;;</span><br><span class="line">ByteBuffer message=ByteBuffer.allocate(buffers[<span class="number">0</span>].remaining()+buffers[<span class="number">1</span>].remaining());</span><br><span class="line">message.put(buffers[<span class="number">0</span>]);</span><br><span class="line">message.put(buffers[<span class="number">1</span>]);</span><br><span class="line">message.flip();</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用CompositeByteBuf进行缓冲区聚合</span></span><br><span class="line">CompositeByteBuf compositeBuffer = Unpooled.compositeBuffer();</span><br><span class="line">compositeBuffer.addComponent(Unpooled.buffer(<span class="number">16</span>));</span><br><span class="line">compositeBuffer.addComponent(Unpooled.directBuffer(<span class="number">16</span>));</span><br><span class="line"><span class="comment">//使用removeComponent移除索引0处理的缓冲区</span></span><br><span class="line">compositeBuffer.removeComponent(<span class="number">0</span>);</span><br><span class="line"><span class="comment">//遍历缓冲区</span></span><br><span class="line"><span class="keyword">for</span>(ByteBuf buf in compositeBuffer)&#123;</span><br><span class="line">  System.out.println(buf.toString());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="ByteBuf-常用方法示例"><a href="#ByteBuf-常用方法示例" class="headerlink" title="ByteBuf 常用方法示例"></a>ByteBuf 常用方法示例</h2><p>ByteBuf常用方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">ByteBuf buffer = Unpooled.buffer();</span><br><span class="line"><span class="comment">//获取指定索引处的byte</span></span><br><span class="line">buffer.getByte(<span class="number">0</span>);</span><br><span class="line"><span class="comment">//设置指定索引处的byte值</span></span><br><span class="line">buffer.setByte(<span class="number">0</span>,<span class="number">1</span>);</span><br><span class="line"><span class="comment">//读取byte数据</span></span><br><span class="line">buffer.readBytes(<span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>]);</span><br><span class="line"><span class="comment">//写入byte数据</span></span><br><span class="line">buffer.writeBytes(<span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>]);</span><br><span class="line"><span class="comment">//获取读索引</span></span><br><span class="line">buffer.readerIndex();</span><br><span class="line"><span class="comment">//获取写索引</span></span><br><span class="line">buffer.writerIndex();</span><br><span class="line"><span class="comment">//获取缓冲区中能读的byte数量</span></span><br><span class="line">buffer.readableBytes();</span><br><span class="line"><span class="comment">//获取缓冲区中剩余的可写区大小</span></span><br><span class="line">buffer.writableBytes();</span><br><span class="line"><span class="comment">//复制缓冲区，浅拷贝</span></span><br><span class="line">buffer.duplicate();</span><br><span class="line"><span class="comment">//复制缓冲区，深拷贝</span></span><br><span class="line">buffer.copy();</span><br><span class="line"><span class="comment">//切分缓冲区</span></span><br><span class="line">buffer.slice();</span><br><span class="line"><span class="comment">//清除缓冲区</span></span><br><span class="line">buffer.clear();</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/08/11/Netty%E5%85%A5%E9%97%A8-Bytebuf/" data-id="cks78swma000236ube3jx3c03" data-title="" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Netty入门-Bootstrap" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-Bootstrap/" class="article-date">
-  <time class="dt-published" datetime="2021-08-11T07:51:32.125Z" itemprop="datePublished">2021-08-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前几节深入学习了ChannelPipeline、ChannelHandler和EventLoop后，接下来的问题是：“如何让这些ChannalPipline、ChannelHandler和EventLoop一起有效组合成一个可以实际运行的应用程序呢？”答案是：Bootstrap(引导)。简单来说Bootstrap是一个应用程序中启动过程中的配置，通过这些配置让应用程序能正常的运行起来的一个过程；这个概念有点像操作系统的启动过相近，操作系统的启动过程同样有一个引导的过程。</p>
-<h2 id="Bootstrap"><a href="#Bootstrap" class="headerlink" title="Bootstrap"></a>Bootstrap</h2><p>在开始讲<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzkyMzIzNjIxMg==&action=getalbum&album_id=1943631392462995458#wechat_redirect">Netty框架入门系列</a>文章时我们有写过一个包含服务端与客户端相互通信的一个示例(<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzkyMzIzNjIxMg==&mid=2247484156&idx=1&sn=7ca350ecc9fc895a331d2ac5e7c3647c&chksm=c1e960e7f69ee9f1a9081ea44450fc4e136af837f611155a479874242a33ecb32cfdf5e5d00d&scene=178&cur_album_id=1943631392462995458#rd">Service与Client示例入门</a>)；在这个示例中就使用了BootStrap进行服务端与客户端网络启动的引导过程，下面再来简单的回顾下这个示例：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//服务端使用ServerBootstrap引导的示例</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">  <span class="comment">//创建EventLoop</span></span><br><span class="line">  NioEventLoopGroup master = <span class="keyword">new</span> NioEventLoopGroup();</span><br><span class="line">  <span class="comment">//创建服务端引导</span></span><br><span class="line">  ServerBootstrap bootstrap = <span class="keyword">new</span> ServerBootstrap();</span><br><span class="line">  bootstrap.group(master);</span><br><span class="line">  bootstrap.option(ChannelOption.SO_KEEPALIVE, <span class="keyword">true</span>);</span><br><span class="line">  <span class="comment">//指定使用NioServerSocketChannel作为Channel类型</span></span><br><span class="line">  bootstrap.channel(NioServerSocketChannel.class);</span><br><span class="line">  <span class="comment">//注册一个ChannelInboundHandlerAdapter类型处理channel的连接</span></span><br><span class="line">  bootstrap.childHandler(<span class="keyword">new</span> ChannelInitializer&lt;SocketChannel&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">initChannel</span><span class="params">(SocketChannel ch)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">			<span class="comment">//TODO 在有连接进入后进行ChannelHandler的编排</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">//使用bind方法启动服务端的监听</span></span><br><span class="line">  ChannelFuture future = bootstrap.bind(<span class="number">30888</span>).sync();</span><br><span class="line">  future.channel().closeFuture().sync();</span><br><span class="line">  master.shutdownGracefully().sync();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//客户端使用Bootstrap引导的示例</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] arg)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">  NioEventLoopGroup group=<span class="keyword">new</span> NioEventLoopGroup()</span><br><span class="line">  Bootstrap bootstrap = <span class="keyword">new</span> Bootstrap();</span><br><span class="line">  bootstrap.channel(NioSocketChannel.class);</span><br><span class="line">  bootstrap.group(group)</span><br><span class="line">  bootstrap.option(ChannelOption.SO_KEEPALIVE,<span class="keyword">true</span>);</span><br><span class="line">  <span class="comment">//绑定远程服务地址与端口</span></span><br><span class="line">  bootstrap.remoteAddress(<span class="string">&quot;127.0.0.1&quot;</span>, <span class="number">30888</span>);</span><br><span class="line">  <span class="keyword">final</span> MessageChannel channel = <span class="keyword">new</span> MessageChannel();</span><br><span class="line">  bootstrap.handler(<span class="keyword">new</span> ChannelInitializer&lt;SocketChannel&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">initChannel</span><span class="params">(SocketChannel ch)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">      <span class="comment">//TODO 在有连接进入后进行ChannelHandler的编排</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">//连接远程服务器</span></span><br><span class="line">  ChannelFuture channelFuture = bootstrap.connect().sync();</span><br><span class="line">  channelFuture.channel().closeFuture().sync();</span><br><span class="line">  group.shutdownGracefully();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在上面的例子中可以看到，服务端的引导使用了ServiceBootstrap类进行引导的启动；而在客户端则使用的是Bootstrap类型进行引导的启动。这样做的本意是用来支持不同的应用程序的功能各有裨益。这也就是说服务器端致力于使用一个父Channel来接受来自客户端的连接并创建一个新的子Channel，再通过这个Channel与客户端进行通信；而客户端则只需要一个单独的没有父Channel的Channel来用于所有的网络交互。这也适用于无连接的传输协议，如UDP，因为它们并不是每个连接都需要一个单独的Channel。下面通过一张类图来看看Netty框架中Bootstarp类与ServiceBootstrap类的类关系图：</p>
-<p><img src="http://img.jasony.top:980/file/1627804750438.png" alt="image-20210801155909215"></p>
-<p>前面学习的几个Netty组件都有参与到引导过程中，而且其中一些在客户端和服务器端都有用到。两种应用程序类型之间能用的引导步骤邮AbstractBootstrap类处理，而特定于客户端与服务端的引导步骤刚分别由BootStrap与ServiceBootstrap处理。</p>
-<p>这里有个问题：为什么引导类是Cloneable的？<br>AbstractBootstrap类的完整声明是这样的：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractBootstrap</span>&lt;<span class="title">B</span> <span class="keyword">extends</span> <span class="title">AbstractBootstrap</span>&lt;<span class="title">B</span>, <span class="title">C</span>&gt;, <span class="title">C</span> <span class="keyword">extends</span> <span class="title">Channel</span>&gt; <span class="keyword">implements</span> <span class="title">Cloneable</span></span></span><br></pre></td></tr></table></figure>
-
-<p>这样的做的目的是为了在需要创建多个具有类似配置或者完全相同配置的Channel。为了支持这种模式而又不需要为每个Channel都创建并配置一个新的引导类实例，AbstractBootstrap被标记为了Cloneable；这样在一个已经配置完成了的AbstractBootstrap类型实例上调用<code>clone()</code>方法就可以得到一个相同引导类实例。但这样使用时需要注意，<code>clone()</code>方法得到的引导类实例只是一个浅拷贝，也就是说修改clone后的实例会影响到原有的实例值的变化。</p>
-<h2 id="Channel和EventLoopGroup的兼容性"><a href="#Channel和EventLoopGroup的兼容性" class="headerlink" title="Channel和EventLoopGroup的兼容性"></a>Channel和EventLoopGroup的兼容性</h2><p>在上面客户端与服务端的例子中分别使用了Bootstrap和ServiceBootStrap类进行各个端的引导启动，在这个过程中还使用了EventLoopGroup与Channel类型，例子中使用了NioEventLoopGroup与NioServerSocketChannel引导服务端启动，使用NioEventLoopGroup与NioSocketChannel引导客户端启动。</p>
-<p>有同学可能会想，如果在引导过程中EventLoopGroup的类型使用NioEventLoopGroup，而Channel的类型使用OIO的OioServiceSocketChannel进行服务端的引用行不行呢？</p>
-<p>答案在运行程序后Netty就会告诉你这样是不行的，因为NioEventLoopGroup与OioServiceSocketChannel是不兼容的，并会提示一个异常错误：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Exception in thread <span class="string">&quot;main&quot;</span> java.lang.IllegalStateException: incompatible event loop type: io.netty.channel.nio.NioEventLoop</span><br></pre></td></tr></table></figure>
-
-<p>这会得到一个<code>java.lang.IllegalStateException</code>的异常提示。所以当我们在编写客户端或者服务端时使用Nio模式的话EventLoopGroup与Channel类型都需要使用Nio开头的对应的EventLoopGroup与Channel类型，使用Oio或者Epoll都是一样，这也算是Netty框架中引导类的一个约定吧。</p>
-<h2 id="给Channel添加选项（ChannelOption）"><a href="#给Channel添加选项（ChannelOption）" class="headerlink" title="给Channel添加选项（ChannelOption）"></a>给Channel添加选项（ChannelOption）</h2><p>ChannelOption这个功能在之前的文章中并没有提到过，但它也是Netty中一个重要的功能。有时需要为Channel添加一些配置或者属性，可以手动获取到channel后一个一个的添加，但这样做是乏味的无趣的，在后续维护中可能还会带来些未知的问题。为此Netty的引导类提供了一个配置方法<code>option()</code>，通过这个方法就可以将配置的ChannelOption类型实例应用到引导中。所提供的值将会自动应用到引导所创建的所有Channel。ChannelOption可以配置的选项包含了底层连接的详细信息，如keep-alive或者超时属性以及缓冲区的设置。通过一个简单的例子演示下如何使用吧：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ServerBootstrap bootstrap = <span class="keyword">new</span> ServerBootstrap();</span><br><span class="line">bootstrap.option(ChannelOption.SO_KEEPALIVE, <span class="keyword">true</span>)</span><br><span class="line">  .option(ChannelOption.CONNECT_TIMEOUT_MILLIS,<span class="number">5000</span>);</span><br></pre></td></tr></table></figure>
-
-<h2 id="关闭"><a href="#关闭" class="headerlink" title="关闭"></a>关闭</h2><p>有启动就会有关闭，那如何优雅的关闭我们的应用程序呢？在引导过程中创建了很多需要使用的资源，这些资源都是应用程序根据需要自动创建的，比如有一个新的连接时创建一个新的Channel资源，接收到消息或者需要发送消息时创建的ByteBuf资源，还有启动时创建的EventLoopGroup等；这些资源都需要在应用程序关闭时进行释放。好在EventLoopGroup提供了<code>shutdownGracefully()</code>方法，调用<code>shutdownGracefully()</code>方法后会返回一个Future类型的实例，这说<code>shutdownGracefully()</code>是一个异步的操作，应用程序的关闭需要阻塞直到它完成。优雅关闭一个应用程序的示例如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建EventLoopGroup</span></span><br><span class="line">NioEventLoopGroup master = <span class="keyword">new</span> NioEventLoopGroup();</span><br><span class="line"><span class="comment">//创建引导类</span></span><br><span class="line">ServerBootstrap bootstrap = <span class="keyword">new</span> ServerBootstrap();</span><br><span class="line"><span class="comment">//绑定EventLoopGroup至引导类</span></span><br><span class="line">bootstrap.group(master);</span><br><span class="line"><span class="comment">//启动服务端的连接监听</span></span><br><span class="line">ChannelFuture future = bootstrap.bind(<span class="number">30888</span>).sync();</span><br><span class="line"><span class="comment">//关闭所有的Channel并阻塞直到完成</span></span><br><span class="line">future.channel().closeFuture().sync();</span><br><span class="line"><span class="comment">//关闭EventLoopGroup并阻塞直到完成</span></span><br><span class="line">master.shutdownGracefully().sync();</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>到这你已经学会了所有Netty组件的使用，现在你可以自己编写一个使用Netty框架进行通信的应用程序。通过这些天的学习我们了解了Netty的Bootstrap、ByteBuf、ChanneHandler、ChannelPepiline、EventLoopt等重要组件，通过这些组件的组合使用完成了一个简单的示例。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/08/11/Netty%E5%85%A5%E9%97%A8-Bootstrap/" data-id="cks78swlw000036ubeq4jhhmh" data-title="" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Netty 概述" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/08/11/Netty%20%E6%A6%82%E8%BF%B0/" class="article-date">
-  <time class="dt-published" datetime="2021-08-11T07:51:32.107Z" itemprop="datePublished">2021-08-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>本文知识点：</p>
-<blockquote>
-<ul>
-<li>Netty框架的作用</li>
-<li>Netty框架体系结构</li>
-<li>Netty框架Channel、ChannelHandler、Future、事件详解</li>
-</ul>
-</blockquote>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Netty框架是什么？Netty是一款用于快速开发高性能的网络应用程序的Java框架。它封装了网络编程的复杂性，使网络编程和Web技术的最新进展能够被 比以往更广泛的开发人员接触到。它不只是一个接口和类的集合，还定义了一种架构模型和一套丰富的设计模式。通过Netty框架开发人员可以编写更高效的、可复用的、可维护的代码。</p>
-<h2 id="Netty-体系结构"><a href="#Netty-体系结构" class="headerlink" title="Netty 体系结构"></a>Netty 体系结构</h2><p>使用Netty可以比直接使用底层的Java API容易使用；在之前讲网络I/O的文章中讲过Java BIO 与Java NIO；Java NIO使用了事件驱动模型；相比于BIO单线程可以支持更多的连接，并且NIO是异步的，对于数据读取、连接、监听是无阻塞的。Netty且有Java NIO的这些特性，并且比Java NIO有更好的性能和更易用的API。</p>
-<p>Netty的核心组件与Java NIO基本相同：</p>
-<ul>
-<li>Channel</li>
-<li>ChannelHandler</li>
-<li>Future</li>
-<li>事件</li>
-</ul>
-<h2 id="Channel"><a href="#Channel" class="headerlink" title="Channel"></a>Channel</h2><p>在讲Java NIO时也有讲过Channel；在Java NIO中Channel的作用相当于一个通道，承载着数据的读与写以及4大事件。在Netty框架中Channel基本相同，它是Netty中可以代表一个硬件设备、一个文件、一个网络Socket或者一个可执行文件或者多个不同的I/O操作组件，它承载着读写操作。</p>
-<h2 id="ChannelHandler"><a href="#ChannelHandler" class="headerlink" title="ChannelHandler"></a>ChannelHandler</h2><p>一个ChannelHandler可以简单的理解为一个回调方法，在Netty内部使用回调来处理事件；当一个事件被触发时，与事件相关的ChannelHandler将被调用来响应这个事件的处理，下面可以通过一个服务端的示例来理解ChannelHandler的作用：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConnectHandler</span> <span class="keyword">extends</span> <span class="title">ChannelInboundHandlerAdapter</span> </span>&#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">channelActive</span><span class="params">(ChannelHandlerContext ctx)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;Client :&quot;</span>+ctx.channel().remoteAddress() + <span class="string">&quot; connected.&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>当有一个客户端连接服务端后，服务端的Netty内部将有产生一个<strong>连接</strong>的事件，事件将触发ConnectHandler的回调触发。</p>
-<h2 id="Future"><a href="#Future" class="headerlink" title="Future"></a>Future</h2><p>在Netty中，Future提供了一种在操作完成时通知应用程序的方式。这个对象可以看作是一个异步操作结果的占位符；它将在未来某个时刻完成并提供对结果的访问。Netty框架提供了ChannelFuture，它是一个Netty自己实现的Future，继承自JDK的java.util.concurrent.Future。</p>
-<p>ChannelFuture接口额外提供了注册一个或者多个GenericFutureListener实例的方法，监听器的回调方法<code>operationComplete()</code>将会在对应的操作完成时被调用。下面通过一个示例来说明：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">EventLoopGroup workerGroup = <span class="keyword">new</span> NioEventLoopGroup();</span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">	Bootstrap b=<span class="keyword">new</span> Bootstrap();</span><br><span class="line">  b.group(workerGroup);</span><br><span class="line">  b.channel(NioSocketChannel.class);</span><br><span class="line">  ChannelFuture f=b.connect(<span class="string">&quot;127.0.0.1&quot;</span>,<span class="string">&quot;8080&quot;</span>).sync();</span><br><span class="line">  <span class="comment">//注册一个ChannelFutureListener以便在操作完成时获取通知</span></span><br><span class="line">  f.addListener(<span class="keyword">new</span> ChannelFutureListener()&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">operationComplete</span><span class="params">(ChannelFuture future)</span></span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(future.isSuccess())&#123;</span><br><span class="line">        ByteBuf buffer=Unpooled.copiedBuffer(<span class="string">&quot;Hello XXX.&quot;</span>,Charset.defaultCharset());</span><br><span class="line">        future.channel().writeAndFlush(buffer);</span><br><span class="line">      &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        future.cause().printStackTrace();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">  workerGroup.shutdownGracefully();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>ChannelHandler和Future是相互补充的机制；它们相互结合使用构成了Netty本身的关键构件之一。</p>
-<h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><p>Netty的核心之一，事件用于触发ChannelHandler。在网络中通常会有入站与出站的流量，在Netty中也将事件按入站与出站进行了分类。通过这些不同的事件分类可以清晰的当前网络中有哪些动作发生并对这些动作做出响应。可以记录日志、对数据做转换、对流进行控制和应用程序的业务逻辑处理等。</p>
-<p>入站事件：</p>
-<ul>
-<li>连接已经激活或者连接失活</li>
-<li>数据读取</li>
-<li>用户事件</li>
-<li>错误事件</li>
-</ul>
-<p>出站事件：</p>
-<ul>
-<li>打开或者关闭远程连接</li>
-<li>将数据写到或者冲刷到网络Socket</li>
-</ul>
-<p>入站与出站中的事件都可以对应到ChannelHandler中进行处理；这实现了一个完善的事件驱动范式。下面通过一张图来理解这些入站与出站中的事件：</p>
-<p><img src="http://img.jasony.top:980/file/1625441488494.png" alt="image-20210704230151626"></p>
-<p>ChnnelHandler为入站与出站处理器提供了基本的抽象，在Netty框架中提供了大量开箱即用的ChannelHeandler；如Http、SSL/TLS等。</p>
-<h2 id="Java-NIO-与Netty"><a href="#Java-NIO-与Netty" class="headerlink" title="Java NIO 与Netty"></a>Java NIO 与Netty</h2><p>Java NIO的三大组件为Channel、Selector、Buffer；在Netty中只看到了Channel与Buffer；但Netty中也有Selector；只是Netty对Selector进行了包装，对应的包含类为EventLoop；EventLoop在Netty中的作用就如Selector在Java NIO中的作用。</p>
-<p>在Netty中不需要开发者再写分发的模板代码，通过封装增加了框架接口的易用性，使用接口在使用上更加紧凑。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/08/11/Netty%20%E6%A6%82%E8%BF%B0/" data-id="cks78swm9000136ubayj67vtq" data-title="" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">August 2021</a></li></ul>
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a><span class="archive-list-count">9</span></li></ul>
     </div>
   </div>
 
 
-  
     
-  <div class="widget-wrap">
+      
+  <div class="widget">
     <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
         
           <li>
-            <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8%E7%9B%AE%E5%BD%95/">(no title)</a>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8%E7%9B%AE%E5%BD%95/" class="title">(no title)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-08-11T07:51:32.229Z" itemprop="datePublished">2021-08-11</time>
+              </p>
+            </div>
           </li>
-        
+          
           <li>
-            <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-%E7%A4%BA%E4%BE%8B/">(no title)</a>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-%E7%A4%BA%E4%BE%8B/" class="title">(no title)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-08-11T07:51:32.216Z" itemprop="datePublished">2021-08-11</time>
+              </p>
+            </div>
           </li>
-        
+          
           <li>
-            <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9Netty/">(no title)</a>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9Netty/" class="title">(no title)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-08-11T07:51:32.201Z" itemprop="datePublished">2021-08-11</time>
+              </p>
+            </div>
           </li>
-        
+          
           <li>
-            <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-EventLoop%E4%B8%8E%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/">(no title)</a>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-EventLoop%E4%B8%8E%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/" class="title">(no title)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-08-11T07:51:32.185Z" itemprop="datePublished">2021-08-11</time>
+              </p>
+            </div>
           </li>
-        
+          
           <li>
-            <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-ChannelPipeline/">(no title)</a>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-ChannelPipeline/" class="title">(no title)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-08-11T07:51:32.170Z" itemprop="datePublished">2021-08-11</time>
+              </p>
+            </div>
           </li>
-        
+          
       </ul>
     </div>
   </div>
+  
 
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2021 John Doe<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
+    
   </div>
-</footer>
+</aside>
 
-    </div>
-    <nav id="mobile-nav">
   
-    <a href="/" class="mobile-nav-link">Home</a>
+  <main class="main" role="main">
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+  <div class="content article-list">
+    
+      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="article-header">
+    
+  </div>
   
-</nav>
+  <p class="article-meta">
+    <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8%E7%9B%AE%E5%BD%95/" class="article-date">
+	  <time datetime="2021-08-11T07:51:32.229Z" itemprop="datePublished">8月 11</time>
+	</a>
+</span>
+    
     
 
+    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8%E7%9B%AE%E5%BD%95/#comments" class="article-comment-link">Comments</a></span>
+    
+  </p>
+</article>
 
-<script src="/js/jquery-3.4.1.min.js"></script>
-
-
-
-  
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-
+    
+      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="article-header">
+    
   </div>
+  
+  <p class="article-meta">
+    <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-%E7%A4%BA%E4%BE%8B/" class="article-date">
+	  <time datetime="2021-08-11T07:51:32.216Z" itemprop="datePublished">8月 11</time>
+	</a>
+</span>
+    
+    
+
+    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-%E7%A4%BA%E4%BE%8B/#comments" class="article-comment-link">Comments</a></span>
+    
+  </p>
+</article>
+
+    
+      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="article-header">
+    
+  </div>
+  
+  <p class="article-meta">
+    <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9Netty/" class="article-date">
+	  <time datetime="2021-08-11T07:51:32.201Z" itemprop="datePublished">8月 11</time>
+	</a>
+</span>
+    
+    
+
+    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9Netty/#comments" class="article-comment-link">Comments</a></span>
+    
+  </p>
+</article>
+
+    
+      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="article-header">
+    
+  </div>
+  
+  <p class="article-meta">
+    <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-EventLoop%E4%B8%8E%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/" class="article-date">
+	  <time datetime="2021-08-11T07:51:32.185Z" itemprop="datePublished">8月 11</time>
+	</a>
+</span>
+    
+    
+
+    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-EventLoop%E4%B8%8E%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/#comments" class="article-comment-link">Comments</a></span>
+    
+  </p>
+</article>
+
+    
+      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="article-header">
+    
+  </div>
+  
+  <p class="article-meta">
+    <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-ChannelPipeline/" class="article-date">
+	  <time datetime="2021-08-11T07:51:32.170Z" itemprop="datePublished">8月 11</time>
+	</a>
+</span>
+    
+    
+
+    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-ChannelPipeline/#comments" class="article-comment-link">Comments</a></span>
+    
+  </p>
+</article>
+
+    
+      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="article-header">
+    
+  </div>
+  
+  <p class="article-meta">
+    <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-ChannelHandler/" class="article-date">
+	  <time datetime="2021-08-11T07:51:32.157Z" itemprop="datePublished">8月 11</time>
+	</a>
+</span>
+    
+    
+
+    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-ChannelHandler/#comments" class="article-comment-link">Comments</a></span>
+    
+  </p>
+</article>
+
+    
+      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="article-header">
+    
+  </div>
+  
+  <p class="article-meta">
+    <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-Bytebuf/" class="article-date">
+	  <time datetime="2021-08-11T07:51:32.139Z" itemprop="datePublished">8月 11</time>
+	</a>
+</span>
+    
+    
+
+    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-Bytebuf/#comments" class="article-comment-link">Comments</a></span>
+    
+  </p>
+</article>
+
+    
+      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="article-header">
+    
+  </div>
+  
+  <p class="article-meta">
+    <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-Bootstrap/" class="article-date">
+	  <time datetime="2021-08-11T07:51:32.125Z" itemprop="datePublished">8月 11</time>
+	</a>
+</span>
+    
+    
+
+    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-Bootstrap/#comments" class="article-comment-link">Comments</a></span>
+    
+  </p>
+</article>
+
+    
+      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="article-header">
+    
+  </div>
+  
+  <p class="article-meta">
+    <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2021/08/11/Netty%20%E6%A6%82%E8%BF%B0/" class="article-date">
+	  <time datetime="2021-08-11T07:51:32.107Z" itemprop="datePublished">8月 11</time>
+	</a>
+</span>
+    
+    
+
+    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/08/11/Netty%20%E6%A6%82%E8%BF%B0/#comments" class="article-comment-link">Comments</a></span>
+    
+  </p>
+</article>
+
+    
+  </div>
+
+   
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+
 </body>
 </html>
