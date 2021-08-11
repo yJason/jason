@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Hexo</title>
+  <meta name="description" content="前言前几节深入学习了ChannelPipeline、ChannelHandler和EventLoop后，接下来的问题是：“如何让这些ChannalPipline、ChannelHandler和EventLoop一起有效组合成一个可以实际运行的应用程序呢？”答案是：Bootstrap(引导)。简单来说Bootstrap是一个应用程序中启动过程中的配置，通过这些配置让应用程序能正常的运行起来的一个过程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2021/08/11/Netty%E5%85%A5%E9%97%A8-Bootstrap/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="前言前几节深入学习了ChannelPipeline、ChannelHandler和EventLoop后，接下来的问题是：“如何让这些ChannalPipline、ChannelHandler和EventLoop一起有效组合成一个可以实际运行的应用程序呢？”答案是：Bootstrap(引导)。简单来说Bootstrap是一个应用程序中启动过程中的配置，通过这些配置让应用程序能正常的运行起来的一个过程">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://img.jasony.top:980/file/1627804750438.png">
+<meta property="article:published_time" content="2021-08-11T07:51:32.125Z">
+<meta property="article:modified_time" content="2021-08-11T07:51:32.125Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://img.jasony.top:980/file/1627804750438.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://example.com/2021/08/11/Netty%E5%85%A5%E9%97%A8-Bootstrap/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">昵称</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shenzhen, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">Books</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">Links</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+
+    
+      
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">August 2021</a><span class="archive-list-count">9</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8%E7%9B%AE%E5%BD%95/" class="title">(no title)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-08-11T07:51:32.229Z" itemprop="datePublished">2021-08-11</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-%E7%A4%BA%E4%BE%8B/" class="title">(no title)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-08-11T07:51:32.216Z" itemprop="datePublished">2021-08-11</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9Netty/" class="title">(no title)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-08-11T07:51:32.201Z" itemprop="datePublished">2021-08-11</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-EventLoop%E4%B8%8E%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/" class="title">(no title)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-08-11T07:51:32.185Z" itemprop="datePublished">2021-08-11</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-ChannelPipeline/" class="title">(no title)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-08-11T07:51:32.170Z" itemprop="datePublished">2021-08-11</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Netty入门-Bootstrap" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-Bootstrap/" class="article-date">
+	  <time datetime="2021-08-11T07:51:32.125Z" itemprop="datePublished">2021-08-11</time>
+	</a>
+</span>
+        
+        
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-Bootstrap/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前几节深入学习了ChannelPipeline、ChannelHandler和EventLoop后，接下来的问题是：“如何让这些ChannalPipline、ChannelHandler和EventLoop一起有效组合成一个可以实际运行的应用程序呢？”答案是：Bootstrap(引导)。简单来说Bootstrap是一个应用程序中启动过程中的配置，通过这些配置让应用程序能正常的运行起来的一个过程；这个概念有点像操作系统的启动过相近，操作系统的启动过程同样有一个引导的过程。</p>
+<h2 id="Bootstrap"><a href="#Bootstrap" class="headerlink" title="Bootstrap"></a>Bootstrap</h2><p>在开始讲<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzkyMzIzNjIxMg==&action=getalbum&album_id=1943631392462995458#wechat_redirect">Netty框架入门系列</a>文章时我们有写过一个包含服务端与客户端相互通信的一个示例(<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzkyMzIzNjIxMg==&mid=2247484156&idx=1&sn=7ca350ecc9fc895a331d2ac5e7c3647c&chksm=c1e960e7f69ee9f1a9081ea44450fc4e136af837f611155a479874242a33ecb32cfdf5e5d00d&scene=178&cur_album_id=1943631392462995458#rd">Service与Client示例入门</a>)；在这个示例中就使用了BootStrap进行服务端与客户端网络启动的引导过程，下面再来简单的回顾下这个示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//服务端使用ServerBootstrap引导的示例</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">  <span class="comment">//创建EventLoop</span></span><br><span class="line">  NioEventLoopGroup master = <span class="keyword">new</span> NioEventLoopGroup();</span><br><span class="line">  <span class="comment">//创建服务端引导</span></span><br><span class="line">  ServerBootstrap bootstrap = <span class="keyword">new</span> ServerBootstrap();</span><br><span class="line">  bootstrap.group(master);</span><br><span class="line">  bootstrap.option(ChannelOption.SO_KEEPALIVE, <span class="keyword">true</span>);</span><br><span class="line">  <span class="comment">//指定使用NioServerSocketChannel作为Channel类型</span></span><br><span class="line">  bootstrap.channel(NioServerSocketChannel.class);</span><br><span class="line">  <span class="comment">//注册一个ChannelInboundHandlerAdapter类型处理channel的连接</span></span><br><span class="line">  bootstrap.childHandler(<span class="keyword">new</span> ChannelInitializer&lt;SocketChannel&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">initChannel</span><span class="params">(SocketChannel ch)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">			<span class="comment">//TODO 在有连接进入后进行ChannelHandler的编排</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">//使用bind方法启动服务端的监听</span></span><br><span class="line">  ChannelFuture future = bootstrap.bind(<span class="number">30888</span>).sync();</span><br><span class="line">  future.channel().closeFuture().sync();</span><br><span class="line">  master.shutdownGracefully().sync();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//客户端使用Bootstrap引导的示例</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] arg)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">  NioEventLoopGroup group=<span class="keyword">new</span> NioEventLoopGroup()</span><br><span class="line">  Bootstrap bootstrap = <span class="keyword">new</span> Bootstrap();</span><br><span class="line">  bootstrap.channel(NioSocketChannel.class);</span><br><span class="line">  bootstrap.group(group)</span><br><span class="line">  bootstrap.option(ChannelOption.SO_KEEPALIVE,<span class="keyword">true</span>);</span><br><span class="line">  <span class="comment">//绑定远程服务地址与端口</span></span><br><span class="line">  bootstrap.remoteAddress(<span class="string">&quot;127.0.0.1&quot;</span>, <span class="number">30888</span>);</span><br><span class="line">  <span class="keyword">final</span> MessageChannel channel = <span class="keyword">new</span> MessageChannel();</span><br><span class="line">  bootstrap.handler(<span class="keyword">new</span> ChannelInitializer&lt;SocketChannel&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">initChannel</span><span class="params">(SocketChannel ch)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">      <span class="comment">//TODO 在有连接进入后进行ChannelHandler的编排</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">//连接远程服务器</span></span><br><span class="line">  ChannelFuture channelFuture = bootstrap.connect().sync();</span><br><span class="line">  channelFuture.channel().closeFuture().sync();</span><br><span class="line">  group.shutdownGracefully();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在上面的例子中可以看到，服务端的引导使用了ServiceBootstrap类进行引导的启动；而在客户端则使用的是Bootstrap类型进行引导的启动。这样做的本意是用来支持不同的应用程序的功能各有裨益。这也就是说服务器端致力于使用一个父Channel来接受来自客户端的连接并创建一个新的子Channel，再通过这个Channel与客户端进行通信；而客户端则只需要一个单独的没有父Channel的Channel来用于所有的网络交互。这也适用于无连接的传输协议，如UDP，因为它们并不是每个连接都需要一个单独的Channel。下面通过一张类图来看看Netty框架中Bootstarp类与ServiceBootstrap类的类关系图：</p>
+<p><img src="http://img.jasony.top:980/file/1627804750438.png" alt="image-20210801155909215"></p>
+<p>前面学习的几个Netty组件都有参与到引导过程中，而且其中一些在客户端和服务器端都有用到。两种应用程序类型之间能用的引导步骤邮AbstractBootstrap类处理，而特定于客户端与服务端的引导步骤刚分别由BootStrap与ServiceBootstrap处理。</p>
+<p>这里有个问题：为什么引导类是Cloneable的？<br>AbstractBootstrap类的完整声明是这样的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractBootstrap</span>&lt;<span class="title">B</span> <span class="keyword">extends</span> <span class="title">AbstractBootstrap</span>&lt;<span class="title">B</span>, <span class="title">C</span>&gt;, <span class="title">C</span> <span class="keyword">extends</span> <span class="title">Channel</span>&gt; <span class="keyword">implements</span> <span class="title">Cloneable</span></span></span><br></pre></td></tr></table></figure>
+
+<p>这样的做的目的是为了在需要创建多个具有类似配置或者完全相同配置的Channel。为了支持这种模式而又不需要为每个Channel都创建并配置一个新的引导类实例，AbstractBootstrap被标记为了Cloneable；这样在一个已经配置完成了的AbstractBootstrap类型实例上调用<code>clone()</code>方法就可以得到一个相同引导类实例。但这样使用时需要注意，<code>clone()</code>方法得到的引导类实例只是一个浅拷贝，也就是说修改clone后的实例会影响到原有的实例值的变化。</p>
+<h2 id="Channel和EventLoopGroup的兼容性"><a href="#Channel和EventLoopGroup的兼容性" class="headerlink" title="Channel和EventLoopGroup的兼容性"></a>Channel和EventLoopGroup的兼容性</h2><p>在上面客户端与服务端的例子中分别使用了Bootstrap和ServiceBootStrap类进行各个端的引导启动，在这个过程中还使用了EventLoopGroup与Channel类型，例子中使用了NioEventLoopGroup与NioServerSocketChannel引导服务端启动，使用NioEventLoopGroup与NioSocketChannel引导客户端启动。</p>
+<p>有同学可能会想，如果在引导过程中EventLoopGroup的类型使用NioEventLoopGroup，而Channel的类型使用OIO的OioServiceSocketChannel进行服务端的引用行不行呢？</p>
+<p>答案在运行程序后Netty就会告诉你这样是不行的，因为NioEventLoopGroup与OioServiceSocketChannel是不兼容的，并会提示一个异常错误：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Exception in thread <span class="string">&quot;main&quot;</span> java.lang.IllegalStateException: incompatible event loop type: io.netty.channel.nio.NioEventLoop</span><br></pre></td></tr></table></figure>
+
+<p>这会得到一个<code>java.lang.IllegalStateException</code>的异常提示。所以当我们在编写客户端或者服务端时使用Nio模式的话EventLoopGroup与Channel类型都需要使用Nio开头的对应的EventLoopGroup与Channel类型，使用Oio或者Epoll都是一样，这也算是Netty框架中引导类的一个约定吧。</p>
+<h2 id="给Channel添加选项（ChannelOption）"><a href="#给Channel添加选项（ChannelOption）" class="headerlink" title="给Channel添加选项（ChannelOption）"></a>给Channel添加选项（ChannelOption）</h2><p>ChannelOption这个功能在之前的文章中并没有提到过，但它也是Netty中一个重要的功能。有时需要为Channel添加一些配置或者属性，可以手动获取到channel后一个一个的添加，但这样做是乏味的无趣的，在后续维护中可能还会带来些未知的问题。为此Netty的引导类提供了一个配置方法<code>option()</code>，通过这个方法就可以将配置的ChannelOption类型实例应用到引导中。所提供的值将会自动应用到引导所创建的所有Channel。ChannelOption可以配置的选项包含了底层连接的详细信息，如keep-alive或者超时属性以及缓冲区的设置。通过一个简单的例子演示下如何使用吧：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ServerBootstrap bootstrap = <span class="keyword">new</span> ServerBootstrap();</span><br><span class="line">bootstrap.option(ChannelOption.SO_KEEPALIVE, <span class="keyword">true</span>)</span><br><span class="line">  .option(ChannelOption.CONNECT_TIMEOUT_MILLIS,<span class="number">5000</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="关闭"><a href="#关闭" class="headerlink" title="关闭"></a>关闭</h2><p>有启动就会有关闭，那如何优雅的关闭我们的应用程序呢？在引导过程中创建了很多需要使用的资源，这些资源都是应用程序根据需要自动创建的，比如有一个新的连接时创建一个新的Channel资源，接收到消息或者需要发送消息时创建的ByteBuf资源，还有启动时创建的EventLoopGroup等；这些资源都需要在应用程序关闭时进行释放。好在EventLoopGroup提供了<code>shutdownGracefully()</code>方法，调用<code>shutdownGracefully()</code>方法后会返回一个Future类型的实例，这说<code>shutdownGracefully()</code>是一个异步的操作，应用程序的关闭需要阻塞直到它完成。优雅关闭一个应用程序的示例如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建EventLoopGroup</span></span><br><span class="line">NioEventLoopGroup master = <span class="keyword">new</span> NioEventLoopGroup();</span><br><span class="line"><span class="comment">//创建引导类</span></span><br><span class="line">ServerBootstrap bootstrap = <span class="keyword">new</span> ServerBootstrap();</span><br><span class="line"><span class="comment">//绑定EventLoopGroup至引导类</span></span><br><span class="line">bootstrap.group(master);</span><br><span class="line"><span class="comment">//启动服务端的连接监听</span></span><br><span class="line">ChannelFuture future = bootstrap.bind(<span class="number">30888</span>).sync();</span><br><span class="line"><span class="comment">//关闭所有的Channel并阻塞直到完成</span></span><br><span class="line">future.channel().closeFuture().sync();</span><br><span class="line"><span class="comment">//关闭EventLoopGroup并阻塞直到完成</span></span><br><span class="line">master.shutdownGracefully().sync();</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>到这你已经学会了所有Netty组件的使用，现在你可以自己编写一个使用Netty框架进行通信的应用程序。通过这些天的学习我们了解了Netty的Bootstrap、ByteBuf、ChanneHandler、ChannelPepiline、EventLoopt等重要组件，通过这些组件的组合使用完成了一个简单的示例。</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://example.com/2021/08/11/Netty%E5%85%A5%E9%97%A8-Bootstrap/" title="" target="_blank" rel="external">http://example.com/2021/08/11/Netty入门-Bootstrap/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">昵称</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-Bytebuf/" title="(no title)"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2021/08/11/Netty%20%E6%A6%82%E8%BF%B0/" title="(no title)"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>

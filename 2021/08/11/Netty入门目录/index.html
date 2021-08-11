@@ -18,15 +18,19 @@
   
   
   <title>Hexo</title>
-  <meta property="og:type" content="website">
+  <meta name="description" content="前言用一个月的时间完成了Netty框架入门文章，文章总共8篇；这次的入门使用一个使用Netty框架完成的一个包含服务端与客户端通信功能的小例子。再围绕这个例子介绍Netty的Bytebuf、ChannelHandler、ChannelPipeline、Bootstrap等组件的使用及相关原理，并没有细讲实现的原理有些可能会过一下，文章中大多会使用服务端与客户端的例子重复的进行说明、拆解等。通过这一">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:url" content="http://example.com/2021/08/11/Netty%E5%85%A5%E9%97%A8%E7%9B%AE%E5%BD%95/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="前言用一个月的时间完成了Netty框架入门文章，文章总共8篇；这次的入门使用一个使用Netty框架完成的一个包含服务端与客户端通信功能的小例子。再围绕这个例子介绍Netty的Bytebuf、ChannelHandler、ChannelPipeline、Bootstrap等组件的使用及相关原理，并没有细讲实现的原理有些可能会过一下，文章中大多会使用服务端与客户端的例子重复的进行说明、拆解等。通过这一">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-08-11T07:51:32.229Z">
+<meta property="article:modified_time" content="2021-08-11T07:51:32.229Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://example.com/index.html">
+  <link rel="canonical" href="http://example.com/2021/08/11/Netty%E5%85%A5%E9%97%A8%E7%9B%AE%E5%BD%95/index.html">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -319,202 +323,165 @@
 </aside>
 
   
-  <main class="main" role="main">
   
-  <div class="content article-list">
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Netty入门目录" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
-      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="article-header">
-    
-  </div>
-  
-  <p class="article-meta">
-    <span class="article-date">
+    <div class="article-header">
+      
+      <div class="article-meta">
+        <span class="article-date">
     <i class="icon icon-calendar-check"></i>
 	<a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8%E7%9B%AE%E5%BD%95/" class="article-date">
-	  <time datetime="2021-08-11T07:51:32.229Z" itemprop="datePublished">Aug 11</time>
+	  <time datetime="2021-08-11T07:51:32.229Z" itemprop="datePublished">2021-08-11</time>
 	</a>
 </span>
-    
-    
+        
+        
 
-    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8%E7%9B%AE%E5%BD%95/#comments" class="article-comment-link">Comments</a></span>
-    
-  </p>
-</article>
+        
 
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8%E7%9B%AE%E5%BD%95/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>用一个月的时间完成了Netty框架入门文章，文章总共8篇；这次的入门使用一个使用Netty框架完成的一个包含服务端与客户端通信功能的小例子。再围绕这个例子介绍Netty的Bytebuf、ChannelHandler、ChannelPipeline、Bootstrap等组件的使用及相关原理，并没有细讲实现的原理有些可能会过一下，文章中大多会使用服务端与客户端的例子重复的进行说明、拆解等。通过这一系列文章你可以掌握这些知识与技能：</p>
+<ol>
+<li>如何使用Netty框架</li>
+<li>Netty框架有那些主要组件</li>
+<li>Bytebuf中常常说的零拷贝是什么原理</li>
+<li>NIO有那些实现方式</li>
+<li>ChannelHandler、ChannelPipeline的作用</li>
+<li>如果引导与优雅的停止使用Netty框架开发的网络应用程序</li>
+</ol>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>所有文章地址：<br><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzkyMzIzNjIxMg==&action=getalbum&album_id=1943631392462995458#wechat_redirect">Netty入门系列 全8篇</a></p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzkyMzIzNjIxMg==&mid=2247484148&idx=1&sn=6f0d8da165afcc7e43fb77b7f5599e06&chksm=c1e960eff69ee9f95bb3f76f98c0caf29c4c6db2bdb537b91347d20fbceb9755aec029c90ee6&scene=178&cur_album_id=1943631392462995458#rd">[1]网络I/O : Netty 体系结构概述</a><br><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzkyMzIzNjIxMg==&mid=2247484156&idx=1&sn=7ca350ecc9fc895a331d2ac5e7c3647c&chksm=c1e960e7f69ee9f1a9081ea44450fc4e136af837f611155a479874242a33ecb32cfdf5e5d00d&scene=178&cur_album_id=1943631392462995458#rd">[2]Netty框架：用Service与Client示例入门</a><br><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzkyMzIzNjIxMg==&mid=2247484164&idx=1&sn=bca7822a17462d45bcc66b9e7e06366f&chksm=c1e9611ff69ee809fc93e2823339c2383e8b9b7a87c88b4d67583237f595c04826bd2a810ab0&scene=178&cur_album_id=1943631392462995458#rd">[3]Netty框架：选择Netty的理由</a><br><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzkyMzIzNjIxMg==&mid=2247484173&idx=1&sn=f08e2e0fe3222e347e65fe55fa847653&chksm=c1e96116f69ee800b6956f855697d97fe0a15ac0b99d75f09ed165ce519a278671242566d02e&scene=178&cur_album_id=1943631392462995458#rd">[4]Netty框架：ByteBuf 堆缓冲区与直接缓冲区使用讲解</a><br><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzkyMzIzNjIxMg==&mid=2247484182&idx=1&sn=a6bb16eba79c06155f7e53829bbf5ee7&chksm=c1e9610df69ee81be279d9407057da492cfc871bdba663071d302fd05b203ea5155e94a5746a&scene=178&cur_album_id=1943631392462995458#rd">[5]Netty框架：ChannelInboundHandler与ChannelOutbountHandler使用讲解</a><br><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzkyMzIzNjIxMg==&mid=2247484194&idx=1&sn=99a8f9977bbc76975f85e7e6ff707cf8&chksm=c1e96139f69ee82fb644366be99ace587fdef1b9638685ae602cd7683846ab260875a388eb8b&scene=178&cur_album_id=1943631392462995458#rd">[6]Netty框架：ChannelPipeline事件传播的艺术</a><br><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzkyMzIzNjIxMg==&mid=2247484204&idx=1&sn=281bcc5485bdcbf3107f2a10c4ffe8e2&chksm=c1e96137f69ee8219d791f4f404582cf6117eb4078b9985e7d68fa0833ae6d4e70ba0ab66ef9&scene=178&cur_album_id=1943631392462995458#rd">[7]Netty入门：EventLoop与线程模型</a><br><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzkyMzIzNjIxMg==&mid=2247484214&idx=1&sn=cddeddee30c1f9f57d73be1ec473211e&chksm=c1e9612df69ee83ba9832a61ea246939cf10bda5d3671e11a0afcdc141ee6cef31bd25ef8fa2&scene=178&cur_album_id=1943631392462995458#rd">[8]Netty框架：Bootstrap 引导</a></p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
     
-      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="article-header">
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://example.com/2021/08/11/Netty%E5%85%A5%E9%97%A8%E7%9B%AE%E5%BD%95/" title="" target="_blank" rel="external">http://example.com/2021/08/11/Netty入门目录/</a>
+    </li>
     
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">昵称</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
   </div>
+</div>
+
+
+    </div>
+  </article>
   
-  <p class="article-meta">
-    <span class="article-date">
-    <i class="icon icon-calendar-check"></i>
-	<a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-%E7%A4%BA%E4%BE%8B/" class="article-date">
-	  <time datetime="2021-08-11T07:51:32.216Z" itemprop="datePublished">Aug 11</time>
-	</a>
-</span>
     
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
     
+  </section>
 
-    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-%E7%A4%BA%E4%BE%8B/#comments" class="article-comment-link">Comments</a></span>
-    
-  </p>
-</article>
 
-    
-      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="article-header">
-    
-  </div>
   
-  <p class="article-meta">
-    <span class="article-date">
-    <i class="icon icon-calendar-check"></i>
-	<a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9Netty/" class="article-date">
-	  <time datetime="2021-08-11T07:51:32.201Z" itemprop="datePublished">Aug 11</time>
-	</a>
-</span>
-    
-    
+</div>
 
-    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9Netty/#comments" class="article-comment-link">Comments</a></span>
-    
-  </p>
-</article>
-
-    
-      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="article-header">
-    
-  </div>
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
   
-  <p class="article-meta">
-    <span class="article-date">
-    <i class="icon icon-calendar-check"></i>
-	<a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-EventLoop%E4%B8%8E%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/" class="article-date">
-	  <time datetime="2021-08-11T07:51:32.185Z" itemprop="datePublished">Aug 11</time>
-	</a>
-</span>
+  <ul class="pager pull-left">
     
     
-
-    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-EventLoop%E4%B8%8E%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/#comments" class="article-comment-link">Comments</a></span>
+    <li class="next">
+      <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-%E7%A4%BA%E4%BE%8B/" title="(no title)"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
     
-  </p>
-</article>
-
     
-      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="article-header">
-    
-  </div>
+  </ul>
   
-  <p class="article-meta">
-    <span class="article-date">
-    <i class="icon icon-calendar-check"></i>
-	<a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-ChannelPipeline/" class="article-date">
-	  <time datetime="2021-08-11T07:51:32.170Z" itemprop="datePublished">Aug 11</time>
-	</a>
-</span>
-    
-    
-
-    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-ChannelPipeline/#comments" class="article-comment-link">Comments</a></span>
-    
-  </p>
-</article>
-
-    
-      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="article-header">
-    
-  </div>
   
-  <p class="article-meta">
-    <span class="article-date">
-    <i class="icon icon-calendar-check"></i>
-	<a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-ChannelHandler/" class="article-date">
-	  <time datetime="2021-08-11T07:51:32.157Z" itemprop="datePublished">Aug 11</time>
-	</a>
-</span>
-    
-    
-
-    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-ChannelHandler/#comments" class="article-comment-link">Comments</a></span>
-    
-  </p>
-</article>
-
-    
-      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="article-header">
-    
-  </div>
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
   
-  <p class="article-meta">
-    <span class="article-date">
-    <i class="icon icon-calendar-check"></i>
-	<a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-Bytebuf/" class="article-date">
-	  <time datetime="2021-08-11T07:51:32.139Z" itemprop="datePublished">Aug 11</time>
-	</a>
-</span>
-    
-    
-
-    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-Bytebuf/#comments" class="article-comment-link">Comments</a></span>
-    
-  </p>
-</article>
-
-    
-      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="article-header">
-    
-  </div>
   
-  <p class="article-meta">
-    <span class="article-date">
-    <i class="icon icon-calendar-check"></i>
-	<a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-Bootstrap/" class="article-date">
-	  <time datetime="2021-08-11T07:51:32.125Z" itemprop="datePublished">Aug 11</time>
-	</a>
-</span>
+  <div class="bar-right">
     
-    
-
-    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/08/11/Netty%E5%85%A5%E9%97%A8-Bootstrap/#comments" class="article-comment-link">Comments</a></span>
-    
-  </p>
-</article>
-
-    
-      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="article-header">
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
     
   </div>
+  </div>
+</nav>
   
-  <p class="article-meta">
-    <span class="article-date">
-    <i class="icon icon-calendar-check"></i>
-	<a href="/2021/08/11/Netty%20%E6%A6%82%E8%BF%B0/" class="article-date">
-	  <time datetime="2021-08-11T07:51:32.107Z" itemprop="datePublished">Aug 11</time>
-	</a>
-</span>
-    
-    
-
-    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/08/11/Netty%20%E6%A6%82%E8%BF%B0/#comments" class="article-comment-link">Comments</a></span>
-    
-  </p>
-</article>
-
-    
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
 
-   
+
+
 </main>
 
   <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
@@ -579,6 +546,33 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
    
 
 
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
 
 
 
